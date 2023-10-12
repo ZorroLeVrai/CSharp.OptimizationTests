@@ -7,7 +7,7 @@ internal class DeadlockUsingTasks
 
     public static void Run()
     {
-        var task1 = Task.Factory.StartNew(() =>
+        var task1 = Task.Run(() =>
         {
             lock (lock1)
             {
@@ -20,7 +20,7 @@ internal class DeadlockUsingTasks
             }
         });
 
-        var task2 = Task.Factory.StartNew(() =>
+        var task2 = Task.Run(() =>
         {
             lock (lock2)
             {
@@ -34,6 +34,7 @@ internal class DeadlockUsingTasks
             }
         });
 
+        //Useful because tasks are executed in background threads
         Task.WaitAll(task1, task2);
     }
 }

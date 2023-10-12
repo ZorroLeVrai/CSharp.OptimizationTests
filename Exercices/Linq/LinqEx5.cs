@@ -1,10 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace Exercices.Linq;
+﻿namespace Exercices.Linq;
 
 internal class LinqEx5 : RunBase<IEnumerable<LinqEx5.Student>, Dictionary<string, int>>
 {

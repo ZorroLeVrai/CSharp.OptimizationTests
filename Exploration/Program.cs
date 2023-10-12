@@ -1,4 +1,3 @@
-﻿using Exploration;
-using Exploration.Threading;
+﻿using Exploration.Threading;
 
-RaceCondition.Run();
+MonitorWaitPulseCoordination.Run();

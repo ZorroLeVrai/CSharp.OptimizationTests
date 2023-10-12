@@ -2,5 +2,5 @@
 
 using Exercices.Linq;
 
-var prgm = new LinqEx8();
+var prgm = new LinqEx7();
 prgm.Run();

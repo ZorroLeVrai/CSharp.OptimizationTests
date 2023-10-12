@@ -1,6 +1,6 @@
 ﻿namespace Exploration.Threading;
 
-internal class RaceCondition
+internal class SolveRaceConditionInterlocked
 {
     const int NB_ITERATION = 100000;
     static int sharedCounter = 0;
@@ -9,16 +9,14 @@ internal class RaceCondition
     {
         Task incTask = Task.Run(() => ModifyCounter(1));
         Task decTask = Task.Run(() => ModifyCounter(-1));
-        
+
         Task.WaitAll(incTask, decTask);
         Console.WriteLine($"sharedCounter: {sharedCounter}");
 
         void ModifyCounter(int nb)
         {
             for (int i = 0; i < NB_ITERATION; ++i)
-            {
-                sharedCounter += nb;
-            }
+                Interlocked.Add(ref sharedCounter, nb);
         }
     }
 }
