@@ -53,7 +53,6 @@ internal class SolveRaceConditionOneThreadV2
 
         public async Task<int> GetCounter()
         {
-            //return await Task<int>.Factory.StartNew(() => _sharedCounter, _cancellationToken, TaskCreationOptions.None, _lcts);
             return await Task<int>.Factory.StartNew((obj) => ((SharedCounter)obj!)._sharedCounter, this, _cancellationToken, TaskCreationOptions.None, _lcts);
         }
 
