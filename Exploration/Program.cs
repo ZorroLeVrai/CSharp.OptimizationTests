@@ -1,22 +1,50 @@
-﻿class Program
+﻿using System;
+
+List<string> names = new List<string>{ "Alice", "Bob", "Charlie", "David", "Eve", "Frank", "Grace", "Hank", "Ivy" };
+
+// Utilisation de Lookup pour regrouper les noms par longueur
+var lookupNames = names.ToLookup(name => name.Length);
+
+// Accéder aux noms de longueur 5
+Console.WriteLine("Noms de longueur 5 :");
+foreach (string name in lookupNames[5])
+    Console.WriteLine(name);
+//Alice
+//David
+//Frank
+//Grace
+
+class Valeur : IEquatable<Valeur>
 {
-    static async Task Main()
+    public int Value { get; set; }
+
+    public Valeur(int value)
     {
-        Console.WriteLine("Start of Main");
+        Value = value;
+    }
 
-        // Crée une instance de HttpClient pour effectuer une requête asynchrone
-        using (HttpClient client = new HttpClient())
-        {
-            // Utilise le mot-clé await pour attendre que la requête soit terminée
-            string result = await client.GetStringAsync("https://www.google.com");
+    public bool Equals(Valeur? other)
+    {
+        if (other == null) return false;
+        return Value == other.Value;
+    }
 
-            Console.WriteLine("Received content length: {0}", result.Length);
-        }
+    public override bool Equals(object? obj)
+    {
+        var other = obj as Valeur;
+        return Equals(other);
+    }
 
-        Console.WriteLine("End of Main");
+    public override int GetHashCode()
+    {
+        return Value.GetHashCode();
+    }
+
+    public override string ToString()
+    {
+        return Value.ToString();
     }
 }
-
 
 
 //SolveRaceConditionOneThread.Run();

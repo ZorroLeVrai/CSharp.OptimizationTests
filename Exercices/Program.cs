@@ -1,6 +1,7 @@
 ﻿// See https://aka.ms/new-console-template for more information
 
+using Exercices.Calculs;
 using Exercices.Linq;
 
-var prgm = new LinqEx7();
+var prgm = new Ex02FibonacciSeries();
 prgm.Run();

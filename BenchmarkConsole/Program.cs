@@ -1,5 +1,5 @@
-﻿using BenchmarkConsole.DateTimeParsers;
+﻿using BenchmarkConsole.Collections;
+using BenchmarkConsole.Copy;
 using BenchmarkDotNet.Running;
 
-BenchmarkRunner.Run<DateParserBenchmarks>();
-
+BenchmarkRunner.Run<CopyBenchmarks>();
