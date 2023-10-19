@@ -3,5 +3,5 @@
 using Exercices.Calculs;
 using Exercices.Linq;
 
-var prgm = new Ex02FibonacciSeries();
+var prgm = new Ex03ConwaySeries();
 prgm.Run();
