@@ -1,7 +1,7 @@
 ﻿using BenchmarkConsole.Exercices;
 using BenchmarkDotNet.Running;
 
-BenchmarkRunner.Run<CommonListScenario>();
+BenchmarkRunner.Run<GuidUrlFriendlyTransformerBenchmark>();
 
 //var test = new GetCommonList();
 //test.SetupData();

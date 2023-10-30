@@ -47,13 +47,16 @@ internal class LinqEx2 : RunBase<string[], Dictionary<string, int>>
         return new string[] { "Pomme", "Banane", "Pomme", "Cerise", "Banane", "Pomme" };
     }
 
-    public override Dictionary<string, int> Process(string[] input)
+    public override Dictionary<string, int> Process()
     {
-        return ToOccurenceDico3(input);
+        if (Input is null)
+            return new Dictionary<string, int>();
+
+        return ToOccurenceDico3(Input);
     }
 
-    public override void DisplayResult(Dictionary<string, int> output)
+    public override void DisplayResult()
     {
-        Console.WriteLine(output.ToPrettyString());
+        Console.WriteLine(Output?.ToPrettyString());
     }
 }

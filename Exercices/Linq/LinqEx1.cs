@@ -7,15 +7,18 @@ public class LinqEx1 : RunBase<IEnumerable<int>, IEnumerable<int>>
         return Enumerable.Range(1, 20);
     }
 
-    public override IEnumerable<int> Process(IEnumerable<int> input)
+    public override IEnumerable<int> Process()
     {
-        return input
+        if (Input is null)
+            return Enumerable.Empty<int>();
+
+        return Input
             .Where(num => (num & 1) == 1)
             .Select(num => 2 * num);
     }
         
-    public override void DisplayResult(IEnumerable<int> output)
+    public override void DisplayResult()
     {
-        Console.WriteLine(output.ToPrettyString());
+        Console.WriteLine(Output!.ToPrettyString());
     }
 }

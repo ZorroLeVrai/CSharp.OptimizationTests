@@ -7,9 +7,9 @@ internal class LinqEx8 : RunBase<IEnumerable<int>, Dictionary<int, IEnumerable<i
         return Enumerable.Range(2, 29);
     }
 
-    public override Dictionary<int, IEnumerable<int>> Process(IEnumerable<int> input)
+    public override Dictionary<int, IEnumerable<int>> Process()
     {
-        return input.Select(number => new { Number = number, Series = SyracuseSeries(number) })
+        return Input!.Select(number => new { Number = number, Series = SyracuseSeries(number) })
             .ToDictionary(item => item.Number, item => item.Series);
 
         IEnumerable<int> SyracuseSeries(int number)
@@ -26,9 +26,9 @@ internal class LinqEx8 : RunBase<IEnumerable<int>, Dictionary<int, IEnumerable<i
         }
     }
 
-    public override void DisplayResult(Dictionary<int, IEnumerable<int>> output)
+    public override void DisplayResult()
     {
-        foreach (var (key, value) in output)
+        foreach (var (key, value) in Output!)
         {
             Console.WriteLine($"{key}: {value.ToPrettyString()}");
         }

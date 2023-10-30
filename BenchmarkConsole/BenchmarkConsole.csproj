@@ -15,6 +15,7 @@
   </ItemGroup>
 
   <ItemGroup>
+    <ProjectReference Include="..\Exercices\Exercices.csproj" />
     <ProjectReference Include="..\OptimizationTests\OptimizationTests.csproj" />
   </ItemGroup>
 

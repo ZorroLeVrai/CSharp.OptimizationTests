@@ -8,7 +8,7 @@ namespace BenchmarkConsole.Exercices;
 [Orderer(SummaryOrderPolicy.FastestToSlowest)]
 [RankColumn]
 [SimpleJob(warmupCount: 5, iterationCount: 10)]
-public class CommonListScenario
+public class CommonListScenarioBenchmark
 {
     private RetrieveCommonListScenario? commonListScenario;
 

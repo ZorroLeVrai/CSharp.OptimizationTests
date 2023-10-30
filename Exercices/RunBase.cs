@@ -5,18 +5,21 @@ public interface IRun
     void Run();
 }
 
-public abstract class RunBase<TIn, TOut>: IRun
+public abstract class RunBase<TIn, TOut> : IRun
 {
+    protected TIn? Input { get; private set; }
+    protected TOut? Output { get; private set; }
+
     public abstract TIn Init();
 
-    public abstract TOut Process(TIn input);
+    public abstract TOut Process();
 
-    public abstract void DisplayResult(TOut output);
+    public abstract void DisplayResult();
 
     public void Run()
     {
-        var input = Init();
-        var output = Process(input);
-        DisplayResult(output);
+        Input = Init();
+        Output = Process();
+        DisplayResult();
     }
 }

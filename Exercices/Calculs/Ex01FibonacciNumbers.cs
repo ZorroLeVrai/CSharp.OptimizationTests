@@ -63,13 +63,13 @@ internal class Ex01FibonacciNumbers : RunBase<int, long>
         }
     }
 
-    public override long Process(int input)
+    public override long Process()
     {
-        return RecursiveMemoFibo(input);
+        return RecursiveMemoFibo(Input);
     }
 
-    public override void DisplayResult(long output)
+    public override void DisplayResult()
     {
-        Console.WriteLine("Result: {0}", output);
+        Console.WriteLine("Result: {0}", Output);
     }
 }

@@ -52,10 +52,10 @@ internal class Ex01CommonList : RunBase<FilePaths, IEnumerable<Person>>
         };
     }
 
-    public override IEnumerable<Person> Process(FilePaths input)
+    public override IEnumerable<Person> Process()
     {
-        var personSet1 = GetPersons(input.FilePath1);
-        var personSet2 = GetPersons(input.FilePath2);
+        var personSet1 = GetPersons(Input!.FilePath1);
+        var personSet2 = GetPersons(Input!.FilePath2);
 
         if (personSet1 == null || personSet2 == null)
             return Enumerable.Empty<Person>();
@@ -73,11 +73,11 @@ internal class Ex01CommonList : RunBase<FilePaths, IEnumerable<Person>>
         }
     }
 
-    public override void DisplayResult(IEnumerable<Person> output)
+    public override void DisplayResult()
     {
         Console.WriteLine("La liste commune de personnes est: ");
         var nb_persons = 0;
-        foreach (var person in output)
+        foreach (var person in Output!)
         {
             Console.WriteLine(person);
             ++nb_persons;

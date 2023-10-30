@@ -7,10 +7,10 @@ internal class Ex02FibonacciSeries : RunBase<int, IEnumerable<long>>
         return 60;
     }
 
-    public override IEnumerable<long> Process(int input)
+    public override IEnumerable<long> Process()
     {
         yield return 0;
-        if (input == 0)
+        if (Input == 0)
             yield break;
         yield return 1;
 
@@ -18,7 +18,7 @@ internal class Ex02FibonacciSeries : RunBase<int, IEnumerable<long>>
         var last = 1L;
         var currentIndex = 1;
         
-        while (currentIndex++ < input)
+        while (currentIndex++ < Input)
         {
             (beforeLast, last) = (last, last + beforeLast);
             yield return last;
@@ -27,10 +27,13 @@ internal class Ex02FibonacciSeries : RunBase<int, IEnumerable<long>>
         yield break;
     }
 
-    public override void DisplayResult(IEnumerable<long> output)
+    public override void DisplayResult()
     {
+        if (Output is null)
+            return;
+
         int index = 0;
-        foreach (var fiboNumber in output) {
+        foreach (var fiboNumber in Output) {
             Console.WriteLine($"fibonacci({index++}): {fiboNumber}");
         }
     }

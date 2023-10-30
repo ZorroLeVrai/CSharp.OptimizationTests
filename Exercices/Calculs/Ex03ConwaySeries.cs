@@ -11,10 +11,10 @@ internal class Ex03ConwaySeries : RunBase<int, string>
         return 60;
     }
 
-    public override string Process(int input)
+    public override string Process()
     {
         var currentItem = _originalTerm;
-        for (int i=0; i<input; ++i)
+        for (int i=0; i<Input; ++i)
         {
             currentItem = GetNextIteration(currentItem);
         }
@@ -50,8 +50,9 @@ internal class Ex03ConwaySeries : RunBase<int, string>
         }
     }
 
-    public override void DisplayResult(string output)
+    public override void DisplayResult()
     {
-        Console.WriteLine("Résultat: {0}", output.Length);
+        Console.WriteLine("Résultat: {0}", Output);
+        Console.WriteLine("Longeur du résultat: {0}", Output?.Length);
     }
 }

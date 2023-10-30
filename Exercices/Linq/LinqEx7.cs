@@ -19,9 +19,9 @@ internal class LinqEx7 : RunBase<LinqEx7.InputData, IEnumerable<LinqEx7.PersonPe
 
         return new InputData(personnes, pets );
     }
-    public override IEnumerable<PersonPet> Process(InputData input)
+    public override IEnumerable<PersonPet> Process()
     {
-        var (personnes, pets) = input;
+        var (personnes, pets) = Input!;
         //GroupJoin is the equivalent of a left join
         return personnes.GroupJoin(pets,
             personne => personne,
@@ -29,9 +29,9 @@ internal class LinqEx7 : RunBase<LinqEx7.InputData, IEnumerable<LinqEx7.PersonPe
             (per, pet) => new PersonPet(per, pet));
     }
 
-    public override void DisplayResult(IEnumerable<PersonPet> output)
+    public override void DisplayResult()
     {
-        Console.WriteLine(output.ToPrettyString());
+        Console.WriteLine(Output!.ToPrettyString());
     }
 
     public record Person(string FirstName, string LastName);

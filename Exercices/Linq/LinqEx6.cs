@@ -18,9 +18,9 @@ internal class LinqEx6 : RunBase<LinqEx6.InputData, IEnumerable<LinqEx6.IdNote>>
 
         return new InputData(personnes, etudiants);
     }
-    public override IEnumerable<IdNote> Process(InputData input)
+    public override IEnumerable<IdNote> Process()
     {
-        var (personnes, etudiants) = input;
+        var (personnes, etudiants) = Input!;
         //Join is the equivalent of an inner join
         return personnes.Join(etudiants,
             per => new { per.Prenom, per.Nom },
@@ -28,9 +28,9 @@ internal class LinqEx6 : RunBase<LinqEx6.InputData, IEnumerable<LinqEx6.IdNote>>
             (per, etd) => new IdNote(per.Id, etd.Note));
     }
 
-    public override void DisplayResult(IEnumerable<IdNote> output)
+    public override void DisplayResult()
     {
-        Console.WriteLine(output.ToPrettyString());
+        Console.WriteLine(Output?.ToPrettyString());
     }
 
     public record Personne(string Prenom, string Nom, string Id);
