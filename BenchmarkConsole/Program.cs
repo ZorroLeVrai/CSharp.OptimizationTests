@@ -1,5 +1,8 @@
-﻿using BenchmarkConsole.Allocations;
-using BenchmarkConsole.Collections;
+﻿using BenchmarkConsole.Exercices;
 using BenchmarkDotNet.Running;
 
-BenchmarkRunner.Run<CreateTypeValueVsTypeReference>();
+BenchmarkRunner.Run<CommonListScenario>();
+
+//var test = new GetCommonList();
+//test.SetupData();
+//test.GetIntersectionUsingListLinqVersion();
