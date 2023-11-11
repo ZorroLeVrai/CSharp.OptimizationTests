@@ -1,9 +1,8 @@
 ﻿using Exercices.Operations;
 using Exercices.Transformation;
+using System.Runtime.InteropServices;
+using System.Text;
 
-var transformer = new GuidAndUrlOptimizedTransformer();
-var urlToGuid = new Ex01FriendlyUrlToGuid(transformer);
-urlToGuid.Run();
 
-var guidToUrl = new Ex01GuidToFriendlyUrl(transformer);
-guidToUrl.Run();
+var exo = new Ex02FiltrerParNotes();
+exo.Run();
