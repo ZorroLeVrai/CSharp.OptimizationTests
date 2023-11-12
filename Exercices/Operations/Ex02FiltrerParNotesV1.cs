@@ -1,14 +1,9 @@
 ﻿using CsvHelper;
-using System;
-using System.Collections.Generic;
 using System.Globalization;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace Exercices.Operations;
 
-internal class Input
+public class Input
 { 
     public decimal MinNote { get; init; } = decimal.MinValue;
 
@@ -28,15 +23,15 @@ public class Eleve
     }
 }
 
-internal class Ex02FiltrerParNotes : RunBase<Input, IEnumerable<Eleve>>
+public class Ex02FiltrerParNotesV1 : RunBase<Input, IEnumerable<Eleve>>
 {
-    const string student_file = "CSV_Files/football_players.csv";
+    const string student_file = "CSV_Files/eleves_notes.csv";
 
     private List<Eleve>? _eleves;
 
     public override Input Init()
     {
-        _eleves = GetStudents().ToList();
+        _eleves = GetStudents();
 
         return new Input
         {
@@ -44,7 +39,7 @@ internal class Ex02FiltrerParNotes : RunBase<Input, IEnumerable<Eleve>>
             MaxNote = 12
         };
 
-        IEnumerable<Eleve> GetStudents()
+        List<Eleve> GetStudents()
         {
             using (var reader = new StreamReader(student_file))
             using (var csv = new CsvReader(reader, CultureInfo.InvariantCulture))
@@ -56,18 +51,19 @@ internal class Ex02FiltrerParNotes : RunBase<Input, IEnumerable<Eleve>>
 
     public override IEnumerable<Eleve> Process()
     {        
-        return _eleves!.Where(eleve => eleve.Note >= Input!.MinNote && eleve.Note <= Input.MaxNote);
+        return _eleves!.Where(eleve => eleve.Note >= Input!.MinNote && eleve.Note < Input.MaxNote)
+            .OrderBy(eleve => eleve.Note)
+            .ToList();
     }
 
     public override void DisplayResult()
     {
-        Console.WriteLine("Les élèves sélectionnés sont:");
-        if (_eleves is null)
+        if (Output is null)
             return;
 
-        foreach(var eleve in _eleves)
-        {
+        Console.WriteLine("Nb élèves sélectionnés: {0}", Output.Count());
+
+        foreach (var eleve in Output)
             Console.WriteLine(eleve);
-        }
     }
 }

@@ -16,10 +16,20 @@ public abstract class RunBase<TIn, TOut> : IRun
 
     public abstract void DisplayResult();
 
-    public void Run()
+    public void Initialize()
     {
         Input = Init();
+    }
+
+    public void RunProcess()
+    {
         Output = Process();
         DisplayResult();
+    }
+
+    public void Run()
+    {
+        Initialize();
+        RunProcess();
     }
 }
