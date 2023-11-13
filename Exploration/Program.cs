@@ -1,3 +1,10 @@
-﻿using System.Drawing;
+﻿using Exploration.PerfView;
+using System.Drawing;
 
-Console.WriteLine("Hello!");
+//Additions.Main();
+
+WaitBeforePrinting.WaitInALoop();
+
+//WaitBeforePrinting.SychronousWait();
+
+//WaitBeforePrinting.AsychronousWait();
