@@ -1,7 +1,7 @@
 ﻿using BenchmarkConsole.Exercices;
 using BenchmarkDotNet.Running;
 
-BenchmarkRunner.Run<FiltrerParNotes>();
+BenchmarkRunner.Run<ConwaySeries>();
 
 //var test = new GetCommonList();
 //test.SetupData();

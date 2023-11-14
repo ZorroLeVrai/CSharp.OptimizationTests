@@ -1,10 +1,10 @@
 ﻿namespace Exercices.Calculs;
 
-internal class Ex01FibonacciNumbers : RunBase<int, long>
+public class Ex01FibonacciNumbers : RunBase<int, long>
 {
     public override int Init()
     {
-        return 60;
+        return 40;
     }
 
     public long IterativeFibo(int index)
