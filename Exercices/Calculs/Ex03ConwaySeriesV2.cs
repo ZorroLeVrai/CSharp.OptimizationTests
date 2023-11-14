@@ -2,13 +2,13 @@
 
 namespace Exercices.Calculs;
 
-internal class Ex03ConwaySeries : RunBase<int, string>
+public class Ex03ConwaySeriesV2 : RunBase<int, string>
 {
     private StringBuilder _originalTerm = new StringBuilder("1");
 
     public override int Init()
     {
-        return 60;
+        return 30;
     }
 
     public override string Process()
