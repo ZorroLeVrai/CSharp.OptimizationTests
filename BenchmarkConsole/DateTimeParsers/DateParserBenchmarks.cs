@@ -19,11 +19,11 @@ public class DateParserBenchmarks
         DtParsers.TryParseDateTimeFromStr(DateTimeInString, out DateTime dt);
     }
 
-    [Benchmark]
-    public void TryParseDateTimeFromSpan()
-    {
-        DtParsers.TryParseDateFromSpan(DateTimeInString, out DateTime dt);
-    }
+    //[Benchmark]
+    //public void TryParseDateTimeFromSpan()
+    //{
+    //    DtParsers.TryParseDateFromSpan(DateTimeInString, out DateTime dt);
+    //}
 
     [Benchmark]
     public void TryParseDateTimeUsingSplits()
