@@ -11,9 +11,11 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "OptimizationTests", "Optimi
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "WebAppDemo", "WebAppDemo\WebAppDemo.csproj", "{790E23AB-C77B-4F3D-BEA9-CC81BA4C9B22}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Exploration", "Exploration\Exploration.csproj", "{EC06BB84-D21A-422C-8E77-32ED67B125E7}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Exploration", "Exploration\Exploration.csproj", "{EC06BB84-D21A-422C-8E77-32ED67B125E7}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Exercices", "Exercices\Exercices.csproj", "{EB54E036-F265-44AD-9346-338805929440}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Exercices", "Exercices\Exercices.csproj", "{EB54E036-F265-44AD-9346-338805929440}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WpfDemoApp", "WpfDemoApp\WpfDemoApp.csproj", "{14E85362-3216-432D-BBCE-371342230B61}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -45,6 +47,10 @@ Global
 		{EB54E036-F265-44AD-9346-338805929440}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{EB54E036-F265-44AD-9346-338805929440}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{EB54E036-F265-44AD-9346-338805929440}.Release|Any CPU.Build.0 = Release|Any CPU
+		{14E85362-3216-432D-BBCE-371342230B61}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{14E85362-3216-432D-BBCE-371342230B61}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{14E85362-3216-432D-BBCE-371342230B61}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{14E85362-3216-432D-BBCE-371342230B61}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
