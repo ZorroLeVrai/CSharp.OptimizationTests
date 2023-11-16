@@ -12,7 +12,7 @@ internal class LinqEx3 : RunBase<int[], int>
         if (Input == null)
             return 0;
 
-        return Input.Aggregate((acc, cur) => acc + ((cur & 1) == 1 ? -1 : 1) * cur);
+        return Input.Aggregate((acc, cur) => acc + ((cur & 1) == 1 ? -cur : cur));
     }
 
     public override void DisplayResult()

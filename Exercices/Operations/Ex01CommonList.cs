@@ -3,13 +3,13 @@ using System.Globalization;
 
 namespace Exercices.Operations;
 
-internal class FilePaths
+public class FilePaths
 {
     public string FilePath1 { get; init; } = string.Empty;
     public string FilePath2 { get; init; } = string.Empty;
 }
 
-internal class Person
+public class Person
 {
     public int Id { get; set; }
     public string Prenom { get; set; } = string.Empty;
@@ -40,7 +40,7 @@ internal class PersonEqualityComparer : IEqualityComparer<Person>
     public int GetHashCode(Person per) => (per.Prenom, per.Nom, per.Date_naissance).GetHashCode();
 }
 
-internal class Ex01CommonList : RunBase<FilePaths, IEnumerable<Person>>
+public class Ex01CommonList : RunBase<FilePaths, IEnumerable<Person>>
 {
     const string football_players = "CSV_Files/football_players.csv";
     const string tennis_players = "CSV_Files/tennis_players.csv";
@@ -65,11 +65,10 @@ internal class Ex01CommonList : RunBase<FilePaths, IEnumerable<Person>>
 
         static HashSet<Person> GetPersons(string filePath)
         {
-            using (var reader = new StreamReader(filePath))
-            using (var csv = new CsvReader(reader, CultureInfo.InvariantCulture))
-            {
-                return new HashSet<Person>(csv.GetRecords<Person>(), new PersonEqualityComparer());
-            }
+            using var reader = new StreamReader(filePath);
+            using var csv = new CsvReader(reader, CultureInfo.InvariantCulture);
+            
+            return new HashSet<Person>(csv.GetRecords<Person>(), new PersonEqualityComparer());
         }
     }
 
