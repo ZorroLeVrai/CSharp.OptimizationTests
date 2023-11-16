@@ -4,7 +4,7 @@ using BenchmarkDotNet.Running;
 using Exercices.Calculs;
 using OptimizationTests.DateTimeParsers;
 
-BenchmarkRunner.Run<FibonacciBenchmark>();
+BenchmarkRunner.Run<SumInverseBenchmark>();
 
 //Ex01FibonacciNumbers fiboNumbers = new Ex01FibonacciNumbers();
 //var result = fiboNumbers.RecursiveFibo(60);

@@ -1,15 +1,13 @@
 ﻿using Exercices.Calculs;
+using Exercices.Multithreading;
 using Exercices.Operations;
-using Exercices.Transformation;
-using System.Runtime.InteropServices;
-using System.Text;
 
+//var ex1 = new Ex01CommonList();
+//ex1.Run();
 
-var exo1 = new Ex03ConwaySeriesV1();
-exo1.Run();
+var ex1 = new Ex03ConwaySeriesV2();
+ex1.Run();
 
-var exo2 = new Ex03ConwaySeriesV2();
-exo2.Run();
+//var ex1 = new Ex01SommeInverse();
+//ex1.CompareResults();
 
-//var exo3 = new Ex02FiltrerParNotesV3();
-//exo3.Run();

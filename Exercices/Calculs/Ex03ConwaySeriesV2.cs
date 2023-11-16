@@ -8,7 +8,7 @@ public class Ex03ConwaySeriesV2 : RunBase<int, string>
 
     public override int Init()
     {
-        return 30;
+        return 60;
     }
 
     public override string Process()

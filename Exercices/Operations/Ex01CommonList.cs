@@ -34,7 +34,7 @@ internal class PersonEqualityComparer : IEqualityComparer<Person>
 
         return string.Equals(person1.Prenom, person2.Prenom, StringComparison.Ordinal)
             && string.Equals(person1.Nom, person2.Nom, StringComparison.Ordinal)
-            && person1.Date_naissance == person2.Date_naissance;
+            && person1.Date_naissance.Equals(person2.Date_naissance);            
     }
 
     public int GetHashCode(Person per) => (per.Prenom, per.Nom, per.Date_naissance).GetHashCode();
@@ -63,7 +63,7 @@ internal class Ex01CommonList : RunBase<FilePaths, IEnumerable<Person>>
         personSet1.IntersectWith(personSet2);
         return personSet1;
 
-        HashSet<Person> GetPersons(string filePath)
+        static HashSet<Person> GetPersons(string filePath)
         {
             using (var reader = new StreamReader(filePath))
             using (var csv = new CsvReader(reader, CultureInfo.InvariantCulture))
