@@ -14,15 +14,9 @@ internal class LinqEx5Bis : RunBase<IEnumerable<LinqEx5Bis.Student>, Dictionary<
     }
     public override Dictionary<string, int> Process()
     {
-        //return Input!.SelectMany(etudiant => etudiant.Courses)
-        //    .GroupBy(item => item)
-        //    .ToDictionary(group => group.Key, group => group.Count());
-
         return Input!.SelectMany(etudiant => etudiant.Courses)
-            .ToLookup(item => item)
+            .GroupBy(item => item)
             .ToDictionary(group => group.Key, group => group.Count());
-
-
     }
 
     public override void DisplayResult()

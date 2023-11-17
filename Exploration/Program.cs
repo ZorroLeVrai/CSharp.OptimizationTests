@@ -1,27 +1,40 @@
 ﻿using Exploration.HashCode;
+using Exploration.Linq;
 using Exploration.PerfView;
+using Exploration.Threading;
 using System.Drawing;
+using System.Numerics;
+using System.Xml;
 
 
 
-const int NB_ITERATION = 100000;
-int sharedCounter = 0;
-
-void ModifyCounter(int nb)
-{
-    for (int i = 0; i < NB_ITERATION; ++i)
-        sharedCounter += nb;
-}
-
-Task incTask = Task.Run(() => ModifyCounter(1));
-Task decTask = Task.Run(() => ModifyCounter(-1));
-
-Task.WaitAll(incTask, decTask);
-Console.WriteLine($"sharedCounter: {sharedCounter}");
+var groupByVsToLookup = new GroupByVsLookUp();
+groupByVsToLookup.Run();
 
 
-//var dicoTest = new DictionaryKeySearchTest();
-//dicoTest.Run();
+
+
+
+//for (int i = 0; i < 10; ++i)
+//    RaceCondition.Run();
+
+
+
+
+//ManualResetEventCoordination.Run();
+//AutoResetEventCoordination.Run();
+//SolveRaceConditionInterlocked.Run();
+//SolveRaceConditionLock.Run();
+//SolveRaceConditionOneThread.Run();
+//await SolveRaceConditionOneThreadV2.Run();
+//SolveRaceConditionReaderWriterLock.Run();
+//SolveRaceConditionSpinLock.Run();
+
+
+
+
+
+
 
 //Additions.Main();
 

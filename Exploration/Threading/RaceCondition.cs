@@ -2,7 +2,7 @@
 
 internal class RaceCondition
 {
-    const int NB_ITERATION = 100000;
+    const int NB_ITERATION = 100_000;
     static int sharedCounter = 0;
 
     public static void Run()
@@ -13,7 +13,7 @@ internal class RaceCondition
         Task.WaitAll(incTask, decTask);
         Console.WriteLine($"sharedCounter: {sharedCounter}");
 
-        void ModifyCounter(int nb)
+        static void ModifyCounter(int nb)
         {
             for (int i = 0; i < NB_ITERATION; ++i)
             {
