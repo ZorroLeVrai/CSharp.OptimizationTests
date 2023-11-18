@@ -1,34 +1,22 @@
-﻿using System.Diagnostics;
-
-namespace Exploration.Threading;
+﻿namespace Exploration.Threading;
 
 internal class SolveRaceConditionOneThread
 {
     const int NB_ITERATION = 100_000;
-    static int sharedCounter = 0;
+    static int sharedCounter;
 
     public static void Run()
     {
-        var sw = new Stopwatch();
-        sw.Start();
+        sharedCounter = 0;
 
-        try
-        {
-            LimitedConcurrencyLevelTaskScheduler lcts = new LimitedConcurrencyLevelTaskScheduler(1);
-            var taskFactory = new TaskFactory(lcts);
+        LimitedConcurrencyLevelTaskScheduler lcts = new LimitedConcurrencyLevelTaskScheduler(1);
+        var taskFactory = new TaskFactory(lcts);
 
-            Task incTask = taskFactory.StartNew(() => ModifyCounter(1));
-            Task decTask = taskFactory.StartNew(() => ModifyCounter(-1));
+        Task incTask = taskFactory.StartNew(() => ModifyCounter(1));
+        Task decTask = taskFactory.StartNew(() => ModifyCounter(-1));
 
-            Task.WaitAll(incTask, decTask);
-            Console.WriteLine($"sharedCounter: {sharedCounter}");
-        }
-        finally
-        { 
-            sw.Stop();
-        }
-
-        Console.WriteLine("Elapsed Time: {0}ms", sw.ElapsedMilliseconds);
+        Task.WaitAll(incTask, decTask);
+        Console.WriteLine($"sharedCounter: {sharedCounter}");
 
         void ModifyCounter(int nb)
         {

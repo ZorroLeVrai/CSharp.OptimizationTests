@@ -11,6 +11,8 @@ internal class AutoResetEventCoordination
         resetEvent.WaitOne();
         Console.WriteLine("{0} continue après que l'événement ait été reçu", threadName);
 
+        Thread.Sleep(2000);
+
         //l'appel au Set() est obligatoire pour notifier le thread suivant
         resetEvent.Set();
     }

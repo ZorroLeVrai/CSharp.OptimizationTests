@@ -21,7 +21,7 @@ internal class GroupByVsLookUp
         foreach (var grouping in courseGrouping)
         {
             Console.WriteLine(grouping.Key);
-            Console.WriteLine(string.Join(", ", grouping));
+            Console.WriteLine("[{0}]", string.Join(", ", grouping));
         }
 
         static IEnumerable<IGrouping<string, string>> GetGroupedByCourse(IEnumerable<Student> students)
@@ -39,7 +39,7 @@ internal class GroupByVsLookUp
         foreach (var grouping in courseGrouping)
         {
             Console.WriteLine(grouping.Key);
-            Console.WriteLine(string.Join(", ", grouping));
+            Console.WriteLine("[{0}]", string.Join(", ", grouping));
         }
 
         static ILookup<string, string> GetToLookupCourse(IEnumerable<Student> students)

@@ -1,4 +1,6 @@
-﻿namespace Exploration.Threading;
+﻿using System.Diagnostics.Metrics;
+
+namespace Exploration.Threading;
 
 internal class SolveRaceConditionSpinLock
 {
@@ -7,6 +9,8 @@ internal class SolveRaceConditionSpinLock
 
     public static void Run()
     {
+        sharedCounter = 0;
+
         var spinLock = new SpinLock();
 
         Task incTask = Task.Run(() => ModifyCounter(1));

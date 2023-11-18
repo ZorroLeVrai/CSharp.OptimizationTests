@@ -7,6 +7,8 @@ internal class RaceCondition
 
     public static void Run()
     {
+        sharedCounter = 0;
+
         Task incTask = Task.Run(() => ModifyCounter(1));
         Task decTask = Task.Run(() => ModifyCounter(-1));
         

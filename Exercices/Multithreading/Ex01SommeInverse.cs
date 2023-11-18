@@ -64,12 +64,12 @@ public class Ex01SommeInverse : RunBase<uint, double>
 
     public override double Process()
     {
-        throw new NotImplementedException();
+        return SimpleLinqProcess(Input);
     }
 
     public override void DisplayResult()
     {
-        throw new NotImplementedException();
+        Console.WriteLine("Resultat: {0}", Output);
     }
 
     public void CompareResults()

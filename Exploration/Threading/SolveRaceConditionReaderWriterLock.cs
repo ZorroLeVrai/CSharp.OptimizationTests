@@ -2,7 +2,7 @@
 
 internal class SolveRaceConditionReaderWriterLock
 {
-    static int counter = 0;
+    static int sharedCounter = 0;
     static ReaderWriterLockSlim rwl = new ReaderWriterLockSlim();
 
     static void WriterProc()
@@ -13,7 +13,7 @@ internal class SolveRaceConditionReaderWriterLock
 
             try
             {
-                ++counter;
+                ++sharedCounter;
             }
             finally
             {
@@ -33,10 +33,10 @@ internal class SolveRaceConditionReaderWriterLock
 
             try
             {
-                if (counter != previous)
+                if (sharedCounter != previous)
                 {
-                    previous = counter;
-                    Console.WriteLine($"Counter: {counter}");
+                    previous = sharedCounter;
+                    Console.WriteLine($"Counter: {sharedCounter}");
                 }
             }
             finally
@@ -48,6 +48,8 @@ internal class SolveRaceConditionReaderWriterLock
 
     public static void Run()
     {
+        sharedCounter = 0;
+
         var readerThread = new Thread(ReaderProc);
         readerThread.Name = "Reader Thread";
 

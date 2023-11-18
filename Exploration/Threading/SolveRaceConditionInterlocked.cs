@@ -3,10 +3,12 @@
 internal class SolveRaceConditionInterlocked
 {
     const int NB_ITERATION = 100000;
-    static int sharedCounter = 0;
+    static int sharedCounter;
 
     public static void Run()
     {
+        sharedCounter = 0;
+
         Task incTask = Task.Run(() => ModifyCounter(1));
         Task decTask = Task.Run(() => ModifyCounter(-1));
 

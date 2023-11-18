@@ -9,6 +9,8 @@ internal class SolveRaceConditionOneThreadV2
 
     public static async Task Run()
     {
+        _sharedCounter = new SharedCounter();
+
         var sw = new Stopwatch();
         sw.Start();
 

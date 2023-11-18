@@ -1,13 +1,28 @@
 ﻿namespace Exploration.Threading;
 
-internal class MonitorWaitPulseCoordination
+/**
+ * Solves the Monitor deadlock issue
+ **/
+internal class MonitorWaitPulseCoordinationV2
 {
     static object phone = new object();
 
-    static void WorkerThread()
+    private Thread workerThread;
+    private Thread bossThread;
+
+    public MonitorWaitPulseCoordinationV2()
+    {
+        workerThread = new Thread(WorkerThread);
+        workerThread.Name = "Worker Thread";
+        bossThread = new Thread(BossThread);
+        bossThread.Name = "Boss Thread";
+    }
+
+    void WorkerThread()
     {
         lock (phone)
         {
+            bossThread.Start();
             for (int i = 0; i < 5; ++i)
             {
                 Monitor.Wait(phone); //releases 'phone' lock and wait to be signaled
@@ -18,8 +33,8 @@ internal class MonitorWaitPulseCoordination
             }
         }
     }
-    
-    static void BossThread()
+
+    void BossThread()
     {
         lock (phone)
         {
@@ -32,15 +47,8 @@ internal class MonitorWaitPulseCoordination
         }
     }
 
-    public static void Run()
+    public void Run()
     {
-        var workerThread = new Thread(WorkerThread);
-        workerThread.Name = "Worker Thread";
-        var bossThread = new Thread(BossThread);
-        bossThread.Name = "Boss Thread";
-
-        //!WARNING: possible deadlock in case thread2 is started before thread1
         workerThread.Start();
-        bossThread.Start();
     }
 }
