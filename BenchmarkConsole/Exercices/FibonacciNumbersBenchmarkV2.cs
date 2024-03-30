@@ -1,23 +1,19 @@
 ﻿using BenchmarkDotNet.Attributes;
 using BenchmarkDotNet.Order;
 using Exercices.Calculs;
-using OptimizationTests.Exercices;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace BenchmarkConsole.Exercices;
 
 [MemoryDiagnoser]
-[Orderer(SummaryOrderPolicy.FastestToSlowest)]
+[Orderer(SummaryOrderPolicy.Method)]
 [RankColumn]
 [SimpleJob(warmupCount: 5, iterationCount: 10)]
-public class FibonacciNumbers
+public class FibonacciNumbersBenchmarkV2
 {
     private Ex01FibonacciNumbers? fiboNumbers;
-    private const int N = 40;
+
+    [Params(10, 20, 40)]
+    public int N { get; set; }
 
     [GlobalSetup]
     public void SetupData()

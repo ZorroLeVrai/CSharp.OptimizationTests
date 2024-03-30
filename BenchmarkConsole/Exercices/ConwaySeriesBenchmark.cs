@@ -8,7 +8,7 @@ namespace BenchmarkConsole.Exercices;
 [Orderer(SummaryOrderPolicy.FastestToSlowest)]
 [RankColumn]
 [SimpleJob(warmupCount: 5, iterationCount: 10)]
-public class ConwaySeries
+public class ConwaySeriesBenchmark
 {
     private Ex03ConwaySeriesV1? conwaySeriesV1;
     private Ex03ConwaySeriesV2? conwaySeriesV2;

@@ -2,13 +2,16 @@
 
 namespace Exercices.Calculs;
 
+/// <summary>
+/// Compute the Conway series using a StringBuilder
+/// </summary>
 public class Ex03ConwaySeriesV2 : RunBase<int, string>
 {
     private StringBuilder _originalTerm = new StringBuilder("1");
 
     public override int Init()
     {
-        return 60;
+        return 40;
     }
 
     public override string Process()

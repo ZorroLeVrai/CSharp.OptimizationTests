@@ -1,8 +1,7 @@
 ﻿using Exploration.Threading;
 
 
-new MonitorWaitPulseCoordinationV2()
-    .Run();
+SolveRaceConditionOneThread.Run();
 
 
 //Additions.Main();

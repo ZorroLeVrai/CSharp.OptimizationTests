@@ -1,12 +1,15 @@
 ﻿namespace Exercices.Calculs;
 
+/// <summary>
+/// Compute the Conway series using a string
+/// </summary>
 public class Ex03ConwaySeriesV1 : RunBase<int, string>
 {
     private string _originalTerm = "1";
 
     public override int Init()
     {
-        return 60;
+        return 40;
     }
 
     public override string Process()

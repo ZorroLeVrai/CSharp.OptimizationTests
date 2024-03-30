@@ -1,31 +1,60 @@
 ﻿namespace Exercices.Calculs;
 
-internal class Ex02FibonacciSeries : RunBase<int, IEnumerable<long>>
+public class Ex02FibonacciSeries : RunBase<int, IEnumerable<long>>
 {
     public override int Init()
     {
         return 60;
     }
 
-    public override IEnumerable<long> Process()
+    private IEnumerable<long> FibonacciIterator()
     {
         yield return 0;
-        if (Input == 0)
-            yield break;
         yield return 1;
 
         var beforeLast = 0L;
         var last = 1L;
-        var currentIndex = 1;
-        
-        while (currentIndex++ < Input)
+
+        while (true)
         {
             (beforeLast, last) = (last, last + beforeLast);
             yield return last;
         }
-
-        yield break;
     }
+
+    public IEnumerable<long> ComputeUsingIterator(int nbTerm)
+    {
+        var fiboArray = new long[nbTerm+1];
+        var currentIndex = 0;
+        foreach (var fiboTerm in FibonacciIterator())
+        {
+            fiboArray[currentIndex++] = fiboTerm;
+            if (currentIndex > nbTerm)
+                break;
+        }
+
+        return fiboArray;
+    }
+
+    public IEnumerable<long> ComputeUsingArray(int nbTerm)
+    {
+        var fiboArray = new long[nbTerm+1];
+        for (int i = 0; i <= nbTerm; ++i)
+        {
+            if (i < 2)
+                fiboArray[i] = i;
+            else
+                fiboArray[i] = fiboArray[i - 1] + fiboArray[i - 2];
+        }
+
+        return fiboArray;
+    }
+
+    public override IEnumerable<long> Process()
+    {
+        return ComputeUsingIterator(Input);
+    }
+
 
     public override void DisplayResult()
     {
@@ -34,7 +63,7 @@ internal class Ex02FibonacciSeries : RunBase<int, IEnumerable<long>>
 
         int index = 0;
         foreach (var fiboNumber in Output) {
-            Console.WriteLine($"fibonacci({index++}): {fiboNumber}");
+            Console.WriteLine($"fibonacci({index++}): {fiboNumber:n0}");
         }
     }
 }

@@ -5,5 +5,5 @@ using Exercices.Operations;
 using System.Threading.Channels;
 
 
-var ex = new Ex03ConwaySeriesV1();
+var ex = new Ex01SommeInverse();
 ex.Run();

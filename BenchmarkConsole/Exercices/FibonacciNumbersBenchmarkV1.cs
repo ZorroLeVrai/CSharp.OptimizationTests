@@ -8,7 +8,7 @@ namespace BenchmarkConsole.Exercices;
 [Orderer(SummaryOrderPolicy.FastestToSlowest)]
 [RankColumn]
 [SimpleJob(warmupCount: 5, iterationCount: 10)]
-public class FibonacciBenchmark
+public class FibonacciNumbersBenchmarkV1
 {
     Ex01FibonacciNumbers fiboNumbers = new Ex01FibonacciNumbers();
     private const int nTerme = 20;
