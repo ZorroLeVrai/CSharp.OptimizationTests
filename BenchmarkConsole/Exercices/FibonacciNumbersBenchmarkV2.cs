@@ -40,6 +40,12 @@ public class FibonacciNumbersBenchmarkV2
     }
 
     [Benchmark]
+    public void RecursiveSpanMemoFibo()
+    {
+        fiboNumbers!.RecursiveSpanMemoFibo(N);
+    }
+
+    [Benchmark]
     public void TailResursiveFibo()
     {
         fiboNumbers!.TailResursiveFibo(N);

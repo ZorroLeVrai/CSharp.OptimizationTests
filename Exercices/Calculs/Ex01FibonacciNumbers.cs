@@ -47,6 +47,25 @@ public class Ex01FibonacciNumbers : RunBase<int, long>
         }
     }
 
+    public long RecursiveSpanMemoFibo(int index)
+    {
+        Span<long> fiboMemo = stackalloc long[index + 1];
+        fiboMemo.Fill(-1);
+        fiboMemo[0] = 0;
+        fiboMemo[1] = 1;
+
+        return InternalRecursiveFibo(fiboMemo, index);
+
+        long InternalRecursiveFibo(in Span<long> memo, int index)
+        {
+            if (memo[index] >= 0)
+                return memo[index];
+
+            memo[index] = InternalRecursiveFibo(memo, index - 1) + InternalRecursiveFibo(memo, index - 2);
+            return memo[index];
+        }
+    }
+
     public long TailResursiveFibo(int terme)
     {
         if (terme < 2)
