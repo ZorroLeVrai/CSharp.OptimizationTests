@@ -33,11 +33,26 @@ internal class DictionaryKeySearchTest
         Console.WriteLine(myDico[new CustomKeyType('B')]);
 
         Console.WriteLine(myDico[new CustomKeyType('Z')]);
+
+        //modifyKey('B', '?');
+        //Console.WriteLine(myDico[new CustomKeyType('B')]);
+    }
+
+    private void modifyKey(char keySource, char keyDest)
+    {
+        foreach (var key in myDico.Keys)
+        {
+            if (key.Val == keySource)
+            {
+                key.Val = keyDest;
+                break;
+            }
+        }
     }
 
     private class CustomKeyType : IEquatable<CustomKeyType>
     {
-        public char Val { get; }
+        public char Val { get; set; }
 
         public CustomKeyType(char v) => Val = v;
 
