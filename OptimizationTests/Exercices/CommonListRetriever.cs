@@ -53,13 +53,13 @@ internal class CommonListRetriever
         if (personList1 is null || personList2 is null)
             return Enumerable.Empty<Person>();
 
-        var commonList = new List<Person>();
+        var commonList = new HashSet<Person>(personComparer);
 
         foreach (var person1 in personList1)
         {
             foreach (var person2 in personList2)
             {
-                if (personComparer.Equals(person1, person2) && !commonList.Contains(person1))
+                if (personComparer.Equals(person1, person2))
                     commonList.Add(person1);
             }
         }
