@@ -5,5 +5,5 @@ using Exercices.Operations;
 using System.Threading.Channels;
 
 
-var ex = new LinqEx2();
+var ex = new LinqEx5B();
 ex.Run();

@@ -18,7 +18,7 @@ internal class LinqEx5B : RunBase<IEnumerable<LinqEx5B.Student>, Dictionary<stri
     {
         return Input!.SelectMany(student => student.Courses.Select(course => new { Course = course, Student = student.Name }))
             .GroupBy(item => item.Course, item => item.Student)
-            .ToDictionary(group => group.Key, group => (IEnumerable<string>)group.ToList());
+            .ToDictionary(group => group.Key, group => group.AsEnumerable());
     }
 
     public override void DisplayResult()
