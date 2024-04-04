@@ -1,15 +1,13 @@
-﻿using BenchmarkConsole.DateTimeParsers;
+﻿using BenchmarkConsole.Collections;
+using BenchmarkConsole.DateTimeParsers;
 using BenchmarkConsole.Exercices;
 using BenchmarkDotNet.Running;
 using Exercices.Calculs;
 using OptimizationTests.DateTimeParsers;
 
-BenchmarkRunner.Run<CommonListScenarioBenchmark>();
+BenchmarkRunner.Run<LinkEx2Benchmark>();
 
-//Ex01FibonacciNumbers fiboNumbers = new Ex01FibonacciNumbers();
-//var result = fiboNumbers.RecursiveFibo(60);
-//Console.WriteLine("Resultat: {0}", result);
-
-//var test = new GetCommonList();
-//test.SetupData();
-//test.GetIntersectionUsingListLinqVersion();
+//var col1 = new List<int>() { 1, 2, 3, 4, 5 };
+//var col2 = col1.Select(x => x + 1);
+//Console.WriteLine(string.Join(",", col1));
+//Console.WriteLine(string.Join(",", col2));

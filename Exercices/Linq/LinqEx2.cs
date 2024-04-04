@@ -2,16 +2,16 @@
 
 namespace Exercices.Linq;
 
-internal class LinqEx2 : RunBase<string[], Dictionary<string, int>>
+public class LinqEx2 : RunBase<string[], Dictionary<string, int>>
 {
-    private Dictionary<string, int> ToOccurenceDico(IEnumerable<string> items)
+    public Dictionary<string, int> ToOccurenceDico(IEnumerable<string> items)
     {
         return items
             .GroupBy(item => item)
             .ToDictionary(group => group.Key, group => group.Count());
     }
 
-    private Dictionary<string, int> ToOccurenceDico2(IEnumerable<string> items)
+    public Dictionary<string, int> ToOccurenceDico2(IEnumerable<string> items)
     {
         return items
             .Aggregate(new Dictionary<string, int>(), (Dictionary<string, int> acc, string cur) =>
@@ -25,8 +25,7 @@ internal class LinqEx2 : RunBase<string[], Dictionary<string, int>>
             });
     }
 
-
-    private Dictionary<string, int> ToOccurenceDico3(IEnumerable<string> items)
+    public Dictionary<string, int> ToOccurenceDico3(IEnumerable<string> items)
     {
         return items
             .Aggregate(new Dictionary<string, int>(), (Dictionary<string, int> acc, string cur) =>

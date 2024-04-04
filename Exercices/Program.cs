@@ -5,5 +5,5 @@ using Exercices.Operations;
 using System.Threading.Channels;
 
 
-var ex = new Ex01SommeInverse();
+var ex = new LinqEx2();
 ex.Run();
