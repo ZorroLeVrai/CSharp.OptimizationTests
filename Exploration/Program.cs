@@ -1,7 +1,7 @@
 ﻿using Exploration.Threading;
 
 
-SolveRaceConditionReaderWriterLock.Run();
+OneThreadSchedulerTest.Run();
 
 
 //Additions.Main();

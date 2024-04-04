@@ -2,12 +2,12 @@
 
 namespace Exploration.Threading;
 
-internal class SolveRaceConditionSpinLock
+public class SolveRaceConditionSpinLock
 {
     const int NB_ITERATION = 100000;
     static int sharedCounter = 0;
 
-    public static void Run()
+    public static void Execute()
     {
         sharedCounter = 0;
 
@@ -17,14 +17,12 @@ internal class SolveRaceConditionSpinLock
         Task decTask = Task.Run(() => ModifyCounter(-1));
 
         Task.WaitAll(incTask, decTask);
-        Console.WriteLine($"sharedCounter: {sharedCounter}");
 
         void ModifyCounter(int nb)
         {
-            var lockTaken = false;
             for (int i = 0; i < NB_ITERATION; ++i)
             {
-                lockTaken = false;
+                var lockTaken = false;
                 try
                 {
                     spinLock.Enter(ref lockTaken);
@@ -37,5 +35,11 @@ internal class SolveRaceConditionSpinLock
                 }
             }
         }
+    }
+
+    public static void Run()
+    {
+        Execute();
+        Console.WriteLine($"sharedCounter: {sharedCounter}");
     }
 }

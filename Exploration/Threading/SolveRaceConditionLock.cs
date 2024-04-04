@@ -1,13 +1,13 @@
 ﻿namespace Exploration.Threading;
 
-internal class SolveRaceConditionLock
+public class SolveRaceConditionLock
 {
     const int NB_ITERATION = 100000;
     static volatile int sharedCounter;
 
     static object sharedCounterLock = new object();
 
-    public static void Run()
+    public static void Execute()
     {
         sharedCounter = 0;
 
@@ -15,17 +15,22 @@ internal class SolveRaceConditionLock
         Task decTask = Task.Run(() => ModifyCounter(-1));
 
         Task.WaitAll(incTask, decTask);
-        Console.WriteLine($"sharedCounter: {sharedCounter}");
 
         void ModifyCounter(int nb)
         {
             for (int i = 0; i < NB_ITERATION; ++i)
             {
-                lock(sharedCounterLock)
+                lock (sharedCounterLock)
                 {
                     sharedCounter += nb;
                 }
             }
         }
+    }
+
+    public static void Run()
+    {
+        Execute();
+        Console.WriteLine($"sharedCounter: {sharedCounter}");
     }
 }

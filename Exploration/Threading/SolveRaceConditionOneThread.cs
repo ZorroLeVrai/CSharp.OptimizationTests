@@ -1,11 +1,11 @@
 ﻿namespace Exploration.Threading;
 
-internal class SolveRaceConditionOneThread
+public class SolveRaceConditionOneThread
 {
     const int NB_ITERATION = 100_000;
     static int sharedCounter;
 
-    public static void Run()
+    public static void Execute()
     {
         sharedCounter = 0;
 
@@ -16,7 +16,6 @@ internal class SolveRaceConditionOneThread
         Task decTask = taskFactory.StartNew(() => ModifyCounter(-1));
 
         Task.WaitAll(incTask, decTask);
-        Console.WriteLine($"sharedCounter: {sharedCounter}");
 
         void ModifyCounter(int nb)
         {
@@ -25,5 +24,11 @@ internal class SolveRaceConditionOneThread
                 sharedCounter += nb;
             }
         }
+    }
+
+    public void Run()
+    {
+        Execute();
+        Console.WriteLine($"sharedCounter: {sharedCounter}");
     }
 }
