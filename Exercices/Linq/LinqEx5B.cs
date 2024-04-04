@@ -14,9 +14,13 @@ internal class LinqEx5B : RunBase<IEnumerable<LinqEx5B.Student>, Dictionary<stri
             new Student("Charlie", new string[] { "Math", "Physics", "Chemistry" } )
         };
     }
+
     public override Dictionary<string, IEnumerable<string>> Process()
     {
-        return Input!.SelectMany(student => student.Courses.Select(course => new { Course = course, Student = student.Name }))
+        if (Input == null)
+            throw new ArgumentNullException(nameof(Input));
+
+        return Input.SelectMany(student => student.Courses.Select(course => new { Course = course, Student = student.Name }))
             .GroupBy(item => item.Course, item => item.Student)
             .ToDictionary(group => group.Key, group => group.AsEnumerable());
     }

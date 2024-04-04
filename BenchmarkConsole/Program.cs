@@ -5,7 +5,19 @@ using BenchmarkDotNet.Running;
 using Exercices.Calculs;
 using OptimizationTests.DateTimeParsers;
 
-BenchmarkRunner.Run<LinkEx2Benchmark>();
+//BenchmarkRunner.Run<LinkEx2Benchmark>();
+
+var p = new Person("TT", 11);
+
+Console.WriteLine(p);
+
+public record Person(string Name, int Age)
+{
+    public override string ToString()
+    {
+        return $"{Name} - {Age}";
+    }
+}
 
 //var col1 = new List<int>() { 1, 2, 3, 4, 5 };
 //var col2 = col1.Select(x => x + 1);

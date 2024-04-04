@@ -7,7 +7,7 @@ internal class SimpleTasks
         for (int i = 0; i < nbLoop; ++i)
         {
             Console.WriteLine("{0} - Loop {1}", taskName, i);
-            Thread.Sleep(0);
+            Thread.Sleep(1000);
         }
     }
 
@@ -16,6 +16,6 @@ internal class SimpleTasks
         var task1 = Task.Run(() => ExecuteProc("Task 1", 5));
         var task2 = Task.Run(() => ExecuteProc("Task 2", 5));
 
-        Task.WaitAll(task1, task2);
+        //Task.WaitAll(task1, task2);
     }
 }

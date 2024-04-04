@@ -40,7 +40,9 @@ internal class MonitorWaitPulseCoordination
         bossThread.Name = "Boss Thread";
 
         //!WARNING: possible deadlock in case thread2 is started before thread1
-        workerThread.Start();
+        
         bossThread.Start();
+        Thread.Sleep(1000);
+        workerThread.Start();
     }
 }
