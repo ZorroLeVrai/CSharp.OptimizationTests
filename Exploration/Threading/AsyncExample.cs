@@ -8,7 +8,8 @@ public class AsyncExample
         Console.WriteLine("Step 1");
         var task = ProcessAsync();
         Console.WriteLine("Step 2");
-        LongProcess(5000);
+        LongProcess(3000);
+        Console.WriteLine("Step 3");
         PrintThreadId(1);
         await task;
         PrintThreadId(1);
@@ -19,17 +20,25 @@ public class AsyncExample
     {
         Console.WriteLine("Start Process");
         PrintThreadId(2);
-        await Task.Delay(3000);
+        await Task.Delay(2000);
         PrintThreadId(2);
         Console.WriteLine("End Process");
     }
 
+    public Task ProcessSync()
+    {
+        Console.WriteLine("Start Process");
+        PrintThreadId(2);
+        return Task.Run(() => {
+            Thread.Sleep(2000);
+            PrintThreadId(2);
+            Console.WriteLine("End Process");
+        });
+    }
+
     private void LongProcess(int nbMs)
     {
-        var startTime = DateTime.Now;
-        var currentTime = DateTime.Now;
-        while ((currentTime - startTime).TotalMilliseconds < nbMs)
-            currentTime = DateTime.Now;
+        Thread.Sleep(nbMs);
     }
 
     private void PrintThreadId(int tagId)

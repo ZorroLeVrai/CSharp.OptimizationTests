@@ -1,7 +1,8 @@
 ﻿using Exploration.Threading;
 
 
-OneThreadSchedulerTest.Run();
+var ex = new AsyncExample();
+await ex.Run();
 
 //await new AsyncExample().Run();
 
