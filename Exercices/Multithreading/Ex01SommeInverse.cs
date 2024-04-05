@@ -33,6 +33,53 @@ public class Ex01SommeInverse : RunBase<uint, double>
             .Sum(x => 1.0 / x);
     }
 
+    public double ParallelWithMaxDegreeWithLock(uint nbTerme, int nbParallelism)
+    {
+        object obj = new object();
+        var parallelOptions = new ParallelOptions()
+        {
+            MaxDegreeOfParallelism = nbParallelism
+        };
+
+        double sum = 0;
+        Parallel.For(1, (int)nbTerme+1, parallelOptions, i =>
+        {
+            lock(obj)
+            {
+                sum += 1 / i;
+            }
+        });
+
+        return sum;
+    }
+
+    public double ParallelWithMaxDegreeWithSpinLock(uint nbTerme, int nbParallelism)
+    {
+        var spinLock = new SpinLock();
+        var parallelOptions = new ParallelOptions()
+        {
+            MaxDegreeOfParallelism = nbParallelism
+        };
+
+        double sum = 0;
+        Parallel.For(1, (int)nbTerme + 1, parallelOptions, i =>
+        {
+            var lockTaken = false;
+            try
+            {
+                spinLock.Enter(ref lockTaken);
+                sum += 1 / i;
+            }
+            finally
+            {
+                if (lockTaken)
+                    spinLock.Exit();
+            }
+        });
+
+        return sum;
+    }
+
     public double SplitParallelProcess(uint nbTerme)
     {
         const int nbSplits = 1000;
@@ -64,7 +111,7 @@ public class Ex01SommeInverse : RunBase<uint, double>
 
     public override double Process()
     {
-        return SimpleLinqProcess(Input);
+        return SplitParallelProcess(Input);
     }
 
     public override void DisplayResult()

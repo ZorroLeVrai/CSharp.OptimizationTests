@@ -10,7 +10,7 @@ namespace BenchmarkConsole.Exercices;
 [SimpleJob(warmupCount: 5, iterationCount: 10)]
 public class SumInverseBenchmark
 {
-    private const uint NB_TERME = 1_000_000_000;
+    private const uint NB_TERME = 100_000_000;
     private readonly Ex01SommeInverse computer = new Ex01SommeInverse();
 
     [Benchmark(Baseline = true)]
@@ -23,6 +23,18 @@ public class SumInverseBenchmark
     public void SimpleLinqProcess()
     {
         computer.SimpleLinqProcess(NB_TERME);
+    }
+
+    [Benchmark]
+    public void ParallelWithMaxDegreeWithLock()
+    {
+        computer.ParallelWithMaxDegreeWithLock(NB_TERME, 100);
+    }
+
+    [Benchmark]
+    public void ParallelWithMaxDegreeWithSpinLock()
+    {
+        computer.ParallelWithMaxDegreeWithSpinLock(NB_TERME, 100);
     }
 
     [Benchmark]
