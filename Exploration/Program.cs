@@ -3,6 +3,7 @@
 
 OneThreadSchedulerTest.Run();
 
+//await new AsyncExample().Run();
 
 //Additions.Main();
 
