@@ -7,7 +7,7 @@ namespace BenchmarkConsole.Exercices;
 [MemoryDiagnoser]
 [Orderer(SummaryOrderPolicy.FastestToSlowest)]
 [RankColumn]
-[SimpleJob(warmupCount: 5, iterationCount: 10)]
+[SimpleJob(warmupCount: 2, iterationCount: 8)]
 public class SumInverseBenchmark
 {
     private const uint NB_TERME = 100_000_000;
@@ -47,5 +47,11 @@ public class SumInverseBenchmark
     public void SplitParallelProcess()
     {
         computer.SplitParallelProcess(NB_TERME);
+    }
+
+    [Benchmark]
+    public void SplitParallelProcessV2()
+    {
+        computer.SplitParallelProcessV2(NB_TERME);
     }
 }

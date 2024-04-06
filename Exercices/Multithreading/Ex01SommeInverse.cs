@@ -2,7 +2,7 @@
 
 public class Ex01SommeInverse : RunBase<uint, double>
 {
-    private const uint NB_TERME = 1_000_000_000;
+    private const uint NB_TERME = 100_000_000;
 
     public override uint Init()
     {
@@ -105,6 +105,31 @@ public class Ex01SommeInverse : RunBase<uint, double>
             for (uint i = minTerme; i <= maxTerme; ++i)
                 sum += 1.0 / i;
             
+            return sum;
+        }
+    }
+
+    public double SplitParallelProcessV2(uint nbTerme)
+    {
+        const int nbSplits = 1000;
+        var intermediateResults = new double[nbSplits];
+        var nbTermsInSplit = ((double)nbTerme) / nbSplits;
+
+        Parallel.For(0, nbSplits, (i, state) =>
+        {
+            var minTerme = (uint)(i * nbTermsInSplit + 1);
+            var maxTerme = (uint)((i + 1) * nbTermsInSplit);
+            intermediateResults[i] = ProcessWithBoundaries(minTerme, maxTerme);
+        });
+
+        return intermediateResults.Sum();
+
+        double ProcessWithBoundaries(uint minTerme, uint maxTerme)
+        {
+            double sum = 0;
+            for (uint i = minTerme; i <= maxTerme; ++i)
+                sum += 1.0 / i;
+
             return sum;
         }
     }
