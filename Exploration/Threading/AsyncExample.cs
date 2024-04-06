@@ -6,9 +6,11 @@ public class AsyncExample
     {
         Console.WriteLine("Start Prgm");
         Console.WriteLine("Step 1");
+        PrintThreadId(1);
         var task = ProcessAsync();
         Console.WriteLine("Step 2");
-        LongProcess(3000);
+        //LongProcess(3000);
+        PrintThreadId(1);
         Console.WriteLine("Step 3");
         PrintThreadId(1);
         await task;

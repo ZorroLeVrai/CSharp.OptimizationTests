@@ -1,8 +1,8 @@
 ﻿using Exploration.Threading;
 
 
-var ex = new AsyncExample();
-await ex.Run();
+var ex = new AsyncWithExceptionsExample();
+await ex.RunAsync();
 
 //await new AsyncExample().Run();
 
