@@ -4,7 +4,7 @@ namespace ProfilingConsole;
 
 internal class ConwaySeries : IRunnable
 {
-    private const int terme = 40;
+    private const int terme = 50;
 
     public void Run()
     {
