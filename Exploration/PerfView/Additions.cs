@@ -1,28 +1,35 @@
 ﻿namespace Exploration.PerfView;
 
-internal class Additions
+public class Additions
 {
-    static int FastAdd(int a, int b)
+    private readonly int _slowNbLoop;
+
+    public Additions(int slowNbLoop)
+    {
+        _slowNbLoop = slowNbLoop;
+    }
+
+    int FastAdd(int a, int b)
     {
         return a + b;
     }
 
-    static int SlowAdd(int a, int b)
+    int SlowAdd(int a, int b)
     {
         long sum = 1;
 
-        for (int j = 0; j < 10_000_000; ++j)
+        for (int j = 0; j < _slowNbLoop; ++j)
         {
-            sum *= j;
+            sum += j;
         }
 
         return a + b;
     }
 
-    public static void Main()
+    public void Main()
     {
         int result = 0;
-        for (int i = 0; i < 20; ++i)
+        for (int i = 0; i < 50; ++i)
         {
             if (i % 10 == 0)
                 result = SlowAdd(1, 2);

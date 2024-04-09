@@ -21,6 +21,12 @@ public abstract class RunBase<TIn, TOut> : IRun
         Input = Init();
     }
 
+    public RunBase<TIn, TOut> Initialize(TIn input)
+    {
+        Input = input;
+        return this;
+    }
+
     public void RunProcess()
     {
         Output = Process();

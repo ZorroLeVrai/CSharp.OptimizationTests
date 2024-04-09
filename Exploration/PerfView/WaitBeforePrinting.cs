@@ -1,36 +1,38 @@
 ﻿namespace Exploration.PerfView;
 
-internal class WaitBeforePrinting
+public class WaitBeforePrinting
 {
-    private const int waitTimeInMs = 5000;
+    private readonly int _waitTimeInMs = 5000;
 
-    private static void PrintEndMessage()
+    public WaitBeforePrinting(int timeInMs)
+    {
+        _waitTimeInMs = timeInMs;
+    }
+
+    private void PrintEndMessage()
     {
         Console.WriteLine("Programme terminé");
     }
 
-    public static void WaitInALoop()
+    public void WaitInALoop()
     {
         var startTime = DateTime.Now;
         var currentTime = DateTime.Now;
-        while ((currentTime - startTime).TotalSeconds < 5)
+        while ((currentTime - startTime).TotalMilliseconds < _waitTimeInMs)
             currentTime = DateTime.Now;
 
         PrintEndMessage();
     }
 
-    public static void SychronousWait()
+    public void SychronousWait()
     {
-        Thread.Sleep(waitTimeInMs);
-
+        Thread.Sleep(_waitTimeInMs);
         PrintEndMessage();
     }
 
-    public async static void AsychronousWait()
+    public async void AsychronousWait()
     {
-        await Task.Delay(waitTimeInMs);
-
+        await Task.Delay(_waitTimeInMs);
         PrintEndMessage();
     }
-
 }
