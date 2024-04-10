@@ -1,8 +1,9 @@
-﻿using Exploration.Threading;
+﻿using Exploration.HashCode;
+using Exploration.Threading;
 
 
-var ex = new AsyncWithExceptionsExample();
-await ex.RunAsync();
+var ex = new DictionaryKeySearchTest();
+ex.Run();
 
 //await new AsyncExample().Run();
 
