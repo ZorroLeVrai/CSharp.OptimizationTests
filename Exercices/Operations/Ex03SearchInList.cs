@@ -1,4 +1,6 @@
-﻿namespace Exercices.Operations;
+﻿using System.Linq;
+
+namespace Exercices.Operations;
 
 public class Ex03SearchInList
 {
@@ -18,9 +20,9 @@ public class Ex03SearchPositionInList
 
     public Ex03SearchPositionInList(int[] elements)
     {
+        var index = 0;
         _collection = elements
-            .Select((value, index) => (Value: value, Index: index))
-            .ToDictionary(tuple => tuple.Value, tuple => tuple.Index);
+            .ToDictionary(element => element, _ => index++);
     }
 
     public bool Contains(int item)
@@ -43,9 +45,9 @@ public class Ex03SearchPositionInListWithDuplicates
 
     public Ex03SearchPositionInListWithDuplicates(int[] elements)
     {
+        var index = 0;
         _collection = elements
-            .Select((value, index) => (Value: value, Index: index))
-            .ToLookup(tuple => tuple.Value, tuple => tuple.Index);
+            .ToLookup(element => element, _ => index++);
     }
 
     public (bool isPresent, IEnumerable<int> positions) Find(int item)
