@@ -5,10 +5,10 @@ using BenchmarkConsole.Multithreading;
 using BenchmarkDotNet.Running;
 using Exercices.Calculs;
 using OptimizationTests.DateTimeParsers;
+using System.Collections;
+using System.ComponentModel;
+using System.Reflection.Metadata.Ecma335;
+using System.Text;
 
-BenchmarkRunner.Run<SumInverseBenchmark>();
+var summary = BenchmarkRunner.Run<DateParserBenchmarks>();
 
-//var col1 = new List<int>() { 1, 2, 3, 4, 5 };
-//var col2 = col1.Select(x => x + 1);
-//Console.WriteLine(string.Join(",", col1));
-//Console.WriteLine(string.Join(",", col2));
