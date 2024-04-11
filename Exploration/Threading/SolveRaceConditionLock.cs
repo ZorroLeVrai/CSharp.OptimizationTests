@@ -2,7 +2,7 @@
 
 public class SolveRaceConditionLock
 {
-    const int NB_ITERATION = 100000;
+    const int NB_ITERATION = 1000_000;
     static volatile int sharedCounter;
 
     static object sharedCounterLock = new object();

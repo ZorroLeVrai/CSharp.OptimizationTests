@@ -10,7 +10,7 @@ namespace BenchmarkConsole.Multithreading;
 [SimpleJob(warmupCount: 2, iterationCount: 8)]
 public class SumInverseBenchmark
 {
-    private const uint NB_TERME = 100_000_000;
+    private const uint NB_TERME = 10_000_000;
     private readonly Ex01SommeInverse computer = new Ex01SommeInverse();
 
     [Benchmark(Baseline = true)]

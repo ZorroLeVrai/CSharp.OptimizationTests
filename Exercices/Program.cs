@@ -1,5 +1,5 @@
 ﻿using Exercices.Linq;
 using Exercices.Multithreading;
 
-new LinqEx5B()
+new Ex01SommeInverse()
     .Run();

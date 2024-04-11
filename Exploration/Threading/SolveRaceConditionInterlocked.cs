@@ -2,7 +2,7 @@
 
 public class SolveRaceConditionInterlocked
 {
-    const int NB_ITERATION = 100000;
+    const int NB_ITERATION = 1000_000;
     static int sharedCounter;
 
     public static void Execute()

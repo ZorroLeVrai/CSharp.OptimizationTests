@@ -56,7 +56,22 @@ public class Ex03FilterPrimes : RunBase<int[], HashSet<int>>
 
     public bool isPrime(int number)
     {
-        for (int i = 2; Square(i) <= number; ++i)
+        if (number == 2)
+            return true;
+        if ((number & 1) == 0)
+            return false;
+        for (long i = 3; Square(i) <= number; i += 2)
+        {
+            if (number % i == 0)
+                return false;
+        }
+
+        return true;
+    }
+
+    public bool isPrimeV1(int number)
+    {
+        for (long i = 2; Square(i) <= number; ++i)
         {
             if (number % i == 0)
                 return false;
@@ -95,6 +110,43 @@ public class Ex03FilterPrimes : RunBase<int[], HashSet<int>>
     public HashSet<int> SimpleWithCacheCompute(int[] inputElements)
         => InternalSimpleCompute(inputElements, true);
 
+    private HashSet<int> InternalLinqCompute(int[] inputElements, bool useCache)
+    {
+        if (useCache)
+            return inputElements.Where(_cachedPrimes.Contains).ToHashSet();
+        
+        return inputElements.Where(isPrime).ToHashSet();
+    }
+
+    public HashSet<int> LinqCompute(int[] inputElements)
+        => InternalLinqCompute(inputElements, false);
+
+    public HashSet<int> LinqPrimeV1Compute(int[] inputElements)
+        => inputElements.Where(isPrimeV1).ToHashSet();
+
+    public HashSet<int> LinqWithCacheCompute(int[] inputElements)
+        => InternalLinqCompute(inputElements, true);
+
+    private HashSet<int> InternalParallelLinqCompute(int[] inputElements, bool useCache)
+    {
+        if (useCache)
+            return inputElements
+                .AsParallel()
+                .Where(_cachedPrimes.Contains)
+                .ToHashSet();
+
+        return inputElements
+            .AsParallel()
+            .Where(isPrime)
+            .ToHashSet();
+    }
+
+    public HashSet<int> LinqParallelCompute(int[] inputElements)
+        => InternalParallelLinqCompute(inputElements, false);
+
+    public HashSet<int> LinqParallelWithCacheCompute(int[] inputElements)
+        => InternalParallelLinqCompute(inputElements, true);
+
     private HashSet<int> InternalParallelCompute(int[] inputElements, bool useCache)
     {
         var tempResult = new int[inputElements.Length];
@@ -102,25 +154,28 @@ public class Ex03FilterPrimes : RunBase<int[], HashSet<int>>
 
         if (useCache)
         {
-            Parallel.For(0, inputElements.Length, i =>
+            Parallel.ForEach(inputElements, (number, _, index) =>
             {
-                if (_cachedPrimes.Contains(inputElements[i]))
-                    tempResult[i] = inputElements[i];
+                StorePrimeNumber(number, index, _cachedPrimes.Contains);
             });
         }
         else
         {
-            Parallel.For(0, inputElements.Length, i =>
+            Parallel.ForEach(inputElements, (number, _, index) =>
             {
-                if (isPrime(inputElements[i]))
-                    tempResult[i] = inputElements[i];
+                StorePrimeNumber(number, index, isPrime);
             });
-
         }
 
         return tempResult
             .Where(item => item != 0)
             .ToHashSet();
+
+        void StorePrimeNumber(int number, long index, Func<int, bool> isPrimePredicate)
+        {
+            if (isPrimePredicate(number))
+                tempResult[index] = number;
+        }
     }
 
     public HashSet<int> ParallelCompute(int[] inputElements)
@@ -143,9 +198,9 @@ public class Ex03FilterPrimes : RunBase<int[], HashSet<int>>
             var minTerme = (uint)(i * nbTermsInSplit);
             var maxTerme = (uint)((i + 1) * nbTermsInSplit);
             if (useCache)
-                tasks[i] = Task.Run(() => ProcessRangeWithCache(minTerme, maxTerme));
+                tasks[i] = Task.Run(() => ProcessRange(minTerme, maxTerme, _cachedPrimes.Contains));
             else
-                tasks[i] = Task.Run(() => ProcessRange(minTerme, maxTerme));
+                tasks[i] = Task.Run(() => ProcessRange(minTerme, maxTerme, isPrime));
         }
 
         Task.WaitAll(tasks);
@@ -154,20 +209,11 @@ public class Ex03FilterPrimes : RunBase<int[], HashSet<int>>
             .Where(item => item != 0)
             .ToHashSet();
 
-        void ProcessRange(uint fromInclusive, uint toExclusive)
+        void ProcessRange(uint fromInclusive, uint toExclusive, Func<int, bool> isPrimePredicate)
         {
             for (uint i = fromInclusive; i < toExclusive; ++i)
             {
-                if (isPrime(inputElements[i]))
-                    tempResult[i] = inputElements[i];
-            }
-        }
-
-        void ProcessRangeWithCache(uint fromInclusive, uint toExclusive)
-        {
-            for (uint i = fromInclusive; i < toExclusive; ++i)
-            {
-                if (_cachedPrimes.Contains(inputElements[i]))
+                if (isPrimePredicate(inputElements[i]))
                     tempResult[i] = inputElements[i];
             }
         }

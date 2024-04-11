@@ -37,6 +37,36 @@ public class PrimeNumbersBenchmark
     }
 
     [Benchmark]
+    public void LinqCompute()
+    {
+        _filterPrimes!.LinqCompute(_collection);
+    }
+
+    [Benchmark]
+    public void LinqPrimeV1Compute()
+    {
+        _filterPrimes!.LinqPrimeV1Compute(_collection);
+    }
+
+    [Benchmark]
+    public void LinqWithCacheCompute()
+    {
+        _filterPrimes!.LinqWithCacheCompute(_collection);
+    }
+
+    [Benchmark]
+    public void LinqParallelCompute()
+    {
+        _filterPrimes!.LinqParallelCompute(_collection);
+    }
+
+    [Benchmark]
+    public void LinqParallelWithCacheCompute()
+    {
+        _filterPrimes!.LinqParallelWithCacheCompute(_collection);
+    }
+
+    [Benchmark]
     public void ParallelCompute()
     {
         _filterPrimes!.ParallelCompute(_collection);

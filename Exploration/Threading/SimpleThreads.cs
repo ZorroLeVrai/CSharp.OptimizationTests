@@ -8,7 +8,7 @@ internal class SimpleThreads
         for (int i = 0; i < nbLoop; ++i)
         {
             Console.WriteLine("{0} - Loop {1}", Thread.CurrentThread.Name, i);
-            Thread.Sleep(0);
+            Thread.Sleep(1000);
         }
     }
 

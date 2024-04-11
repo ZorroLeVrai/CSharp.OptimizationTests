@@ -2,8 +2,8 @@
 using Exploration.Threading;
 
 
-var ex = new DictionaryKeySearchTest();
-ex.Run();
+SolveRaceConditionReaderWriterLock.
+    Run();
 
 //await new AsyncExample().Run();
 

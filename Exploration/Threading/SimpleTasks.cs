@@ -16,6 +16,6 @@ internal class SimpleTasks
         var task1 = Task.Run(() => ExecuteProc("Task 1", 5));
         var task2 = Task.Run(() => ExecuteProc("Task 2", 5));
 
-        //Task.WaitAll(task1, task2);
+        Task.WaitAll(task1, task2);
     }
 }

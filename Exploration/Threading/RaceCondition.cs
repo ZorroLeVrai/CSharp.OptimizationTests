@@ -2,7 +2,7 @@
 
 internal class RaceCondition
 {
-    const int NB_ITERATION = 100_000;
+    const int NB_ITERATION = 1000_000;
     static int sharedCounter = 0;
 
     public static void Run()

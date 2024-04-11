@@ -46,7 +46,7 @@ public class Ex01SommeInverse : RunBase<uint, double>
         {
             lock(obj)
             {
-                sum += 1 / i;
+                sum += 1.0 / i;
             }
         });
 
@@ -68,7 +68,7 @@ public class Ex01SommeInverse : RunBase<uint, double>
             try
             {
                 spinLock.Enter(ref lockTaken);
-                sum += 1 / i;
+                sum += 1.0 / i;
             }
             finally
             {
