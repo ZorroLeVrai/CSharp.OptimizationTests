@@ -1,8 +1,4 @@
-﻿using Exercices.Calculs;
-using Exercices.Linq;
-using Exercices.Multithreading;
-using Exercices.Operations;
-using System.Threading.Channels;
+﻿using Exercices.Multithreading;
 
-var ex = new Ex02FibonacciSeries()
-    .ComputeUsingIterator(100);
+new Ex03FilterPrimes()
+    .Run();

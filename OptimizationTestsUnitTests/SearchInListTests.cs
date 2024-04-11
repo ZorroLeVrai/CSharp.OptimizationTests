@@ -1,4 +1,5 @@
 ﻿using Exercices.Operations;
+using Exercices.Operations.Exercice3;
 using NUnit.Framework;
 
 namespace OptimizationTestsUnitTests;
@@ -8,16 +9,16 @@ internal class SearchInListTests
 {
     private int[] _uniqueNumbers = { 5, 3, 2, 8, 4, 1, 6, 7, 10 };
     private int[] _numbers = { 5, 3, 5, 3, 2, 5, 2, 8, 4, 2, 1, 6, 5, 7, 4, 6, 10, 8, 7, 1 };
-    private Ex03SearchInList? _searchInList;
-    private Ex03SearchPositionInList? _searchPositionInList;
-    private Ex03SearchPositionInListWithDuplicates? _searchPositionInListWithDuplicates;
+    private OptimizedSearchInList? _searchInList;
+    private OptimizedSearchPositionInList? _searchPositionInList;
+    private OptimizedSearchPositionInListWithDuplicates? _searchPositionInListWithDuplicates;
 
     [OneTimeSetUp]
     public void Init()
     {
-        _searchInList = new Ex03SearchInList(_uniqueNumbers);
-        _searchPositionInList = new Ex03SearchPositionInList(_uniqueNumbers);
-        _searchPositionInListWithDuplicates = new Ex03SearchPositionInListWithDuplicates(_numbers);
+        _searchInList = new OptimizedSearchInList(_uniqueNumbers);
+        _searchPositionInList = new OptimizedSearchPositionInList(_uniqueNumbers);
+        _searchPositionInListWithDuplicates = new OptimizedSearchPositionInListWithDuplicates(_numbers);
     }
 
     [Test]

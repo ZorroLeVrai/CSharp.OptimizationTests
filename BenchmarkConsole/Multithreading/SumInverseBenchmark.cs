@@ -2,7 +2,7 @@
 using BenchmarkDotNet.Order;
 using Exercices.Multithreading;
 
-namespace BenchmarkConsole.Exercices;
+namespace BenchmarkConsole.Multithreading;
 
 [MemoryDiagnoser]
 [Orderer(SummaryOrderPolicy.FastestToSlowest)]
