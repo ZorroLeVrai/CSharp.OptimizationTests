@@ -1,11 +1,12 @@
 ﻿using Exploration.PerfView;
+using ProfilingConsole;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace ProfilingConsole;
+namespace ConsoleApp.Profiling;
 
 internal class WaitBeforeAction : IRunnable
 {

@@ -1,6 +1,7 @@
 ﻿using Exploration.PerfView;
+using ProfilingConsole;
 
-namespace ProfilingConsole;
+namespace ConsoleApp.Profiling;
 
 internal class CustomCalculation : IRunnable
 {

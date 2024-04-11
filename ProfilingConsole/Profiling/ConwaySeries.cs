@@ -1,6 +1,7 @@
 ﻿using Exercices.Calculs;
+using ProfilingConsole;
 
-namespace ProfilingConsole;
+namespace ConsoleApp.Profiling;
 
 internal class ConwaySeries : IRunnable
 {

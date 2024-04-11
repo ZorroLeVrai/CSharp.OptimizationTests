@@ -13,7 +13,10 @@ internal class LinqEx5 : RunBase<IEnumerable<LinqEx5.Student>, Dictionary<string
     }
     public override Dictionary<string, int> Process()
     {
-        return Input!.SelectMany(etudiant => etudiant.Courses)
+        if (Input == null)
+            throw new ArgumentNullException("input");
+
+        return Input.SelectMany(etudiant => etudiant.Courses)
             .GroupBy(item => item)
             .ToDictionary(group => group.Key, group => group.Count());
     }

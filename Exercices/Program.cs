@@ -1,4 +1,5 @@
-﻿using Exercices.Multithreading;
+﻿using Exercices.Linq;
+using Exercices.Multithreading;
 
-new Ex03FilterPrimes()
+new LinqEx5B()
     .Run();

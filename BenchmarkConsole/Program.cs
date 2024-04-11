@@ -1,4 +1,4 @@
 ﻿using BenchmarkConsole.Multithreading;
 using BenchmarkDotNet.Running;
 
-BenchmarkRunner.Run<SumDigitBenchmark>();
+BenchmarkRunner.Run<PrimeNumbersBenchmark>();
