@@ -8,8 +8,9 @@ public class AsyncExample
         Console.WriteLine("Step 1");
         PrintThreadId(1);
         var task = ProcessAsync();
+        //await ProcessAsync();
         Console.WriteLine("Step 2");
-        //LongProcess(3000);
+        LongProcess(3000);
         PrintThreadId(1);
         Console.WriteLine("Step 3");
         PrintThreadId(1);
@@ -22,6 +23,7 @@ public class AsyncExample
     {
         Console.WriteLine("Start Process");
         PrintThreadId(2);
+        //Request base de données
         await Task.Delay(2000);
         PrintThreadId(2);
         Console.WriteLine("End Process");
@@ -36,6 +38,20 @@ public class AsyncExample
             PrintThreadId(2);
             Console.WriteLine("End Process");
         });
+    }
+
+    public void ParallelRequestCall()
+    {
+        var tasks = new List<Task>();
+        for (int i = 0; i < 10; i++)
+        {
+            Task task = ProcessAsync();
+            tasks.Add(task);
+        }
+
+        Console.ReadKey();
+
+        //Task.WaitAll(tasks.ToArray());
     }
 
     private void LongProcess(int nbMs)
