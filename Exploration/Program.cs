@@ -2,8 +2,10 @@
 using Exploration.Threading;
 
 
-SolveRaceConditionReaderWriterLock.
+MonitorLockDemo.
     Run();
+
+Console.ReadLine();
 
 //await new AsyncExample().Run();
 
