@@ -2,27 +2,18 @@
 
 internal static class Closure_Example
 {
-    private static void DisplayGetters(Func<Tool>[] getterArray, Action<Tool> display)
-    {
-        foreach (var getter in getterArray)
-        {
-            display(getter());
-        }
-    }
-
     public static void Run()
     {
         var arrayLength = 10;
-        var getters = new Func<Tool>[arrayLength];
+        var getters = new Func<int>[arrayLength];
         for (int i = 0; i < arrayLength; ++i)
         {
-            Tool tool = new Tool((char)('A' + i), i);
-            getters[i] = getter;
-
-            Tool getter() => tool;
+            getters[i] = () => i;
         }
 
-        DisplayGetters(getters, Console.WriteLine);
+        //DisplayGetters(getters, Console.WriteLine);
+        foreach (var getter in getters)
+            Console.WriteLine(getter());
     }
 
     private record Tool(char Name, decimal Price);

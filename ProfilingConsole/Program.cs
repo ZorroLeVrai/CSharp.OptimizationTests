@@ -2,14 +2,24 @@
 
 using ConsoleApp;
 
-DisplayBinaries(10);
+//await DisplayBinariesAsync(10);
+
+//DisplayBinaries(10);
+
+GenerateBinaryNumbers.GenerateBinariesAsap(10);
+
+Console.ReadLine();
+
+async Task DisplayBinariesAsync(int nb)
+{
+    await foreach(var resultItem in GenerateBinaryNumbers.GenerateBinariesAsync(nb))
+        Console.WriteLine(resultItem);
+}
 
 void DisplayBinaries(int nb)
 {
-    var results = GenerateBinaryNumbers.GenerateBinaries(nb);
-
-    foreach (var resultItem in results)
-        Console.WriteLine(resultItem);
+    foreach (var resultItem in GenerateBinaryNumbers.GenerateParallelBinaries(nb))
+        Console.WriteLine(resultItem.Result);
 }
 
 //new ConwaySeries()

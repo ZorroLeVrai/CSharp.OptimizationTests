@@ -19,16 +19,6 @@ public class AsyncExample
         Console.WriteLine("End Prgm");
     }
 
-    public async Task ProcessAsync()
-    {
-        Console.WriteLine("Start Process");
-        PrintThreadId(2);
-        //Request base de données
-        await Task.Delay(2000);
-        PrintThreadId(2);
-        Console.WriteLine("End Process");
-    }
-
     public Task ProcessSync()
     {
         Console.WriteLine("Start Process");
@@ -40,6 +30,16 @@ public class AsyncExample
         });
     }
 
+    public async Task ProcessAsync()
+    {
+        Console.WriteLine("Start Process");
+        PrintThreadId(2);
+        //Request base de données
+        await Task.Delay(5000);
+        PrintThreadId(2);
+        Console.WriteLine("End Process");
+    }
+
     public void ParallelRequestCall()
     {
         var tasks = new List<Task>();
@@ -49,9 +49,9 @@ public class AsyncExample
             tasks.Add(task);
         }
 
-        Console.ReadKey();
+        Task.WaitAll(tasks.ToArray());
 
-        //Task.WaitAll(tasks.ToArray());
+        Console.ReadKey();
     }
 
     private void LongProcess(int nbMs)

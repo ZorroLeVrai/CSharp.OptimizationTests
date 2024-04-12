@@ -4,30 +4,83 @@ internal class GenerateBinaryNumbers
 {
     static Random random = new Random();
 
-    public static IEnumerable<string> GenerateBinaries(int nbNumbers)
+    public async static IAsyncEnumerable<string> GenerateBinariesAsync(int nbNumbers)
     {
         for (int i = 0; i < nbNumbers; ++i)
         {
             int randonNumber = random.Next(256);
-            yield return GetBinary(randonNumber);
+            yield return await GetBinaryAsync(randonNumber);
+        }
+    }
+
+
+    public async static IAsyncEnumerable<string> GenerateParallelBinariesAsync(int nbNumbers)
+    {
+        var tasks = new Task<string>[nbNumbers];
+        for (int i = 0; i < nbNumbers; ++i)
+        {
+            int randonNumber = random.Next(256);
+            tasks[i] = GetBinaryAsync(randonNumber);
         }
 
-        string GetBinary(int number)
+        for (int i = 0; i < nbNumbers; ++i)
         {
-            using HttpClient client = new();
+            yield return await tasks[i];
+        }
 
-            client.BaseAddress = new Uri("https://localhost:7014/");
-            var url = string.Concat("api/IntToBinary/", number);
+        //Task.WaitAll(tasks);
+        //return tasks.Select(t => t.Result).ToArray();
+    }
 
-            try
-            {
-                return client.GetStringAsync(url)
-                    .Result;
-            }
-            catch (Exception ex)
-            {
-                return ex.Message;
-            }
+    public static Task<string>[] GenerateParallelBinaries(int nbNumbers)
+    {
+        var tasks = new Task<string>[nbNumbers];
+        for (int i = 0; i < nbNumbers; ++i)
+        {
+            int randonNumber = random.Next(256);
+            tasks[i] = GetBinaryAsync(randonNumber);
+        }
+
+        Task.WaitAll(tasks);
+
+        return tasks;
+    }
+
+    public static void GenerateBinariesAsap(int nbNumbers)
+    {
+        Task[] tasks = new Task[nbNumbers];
+
+        for (int i = 0; i < nbNumbers; ++i)
+        {
+            int randomNumber = random.Next(256);
+            tasks[i] = DispBinaryStrAsync(GetBinaryAsync(randomNumber));
+            //tasks[i] = GetBinaryAsync(randomNumber)
+            //    .ContinueWith(t => Console.WriteLine(t.Result));
+        }
+
+        Task.WaitAll(tasks);
+
+        static async Task DispBinaryStrAsync(Task<string> task)
+        {
+            var result = await task;
+            await Console.Out.WriteLineAsync(result);
+        }
+    }
+
+    static async Task<string> GetBinaryAsync(int number)
+    {
+        using HttpClient client = new();
+
+        client.BaseAddress = new Uri("https://localhost:7014/");
+        var url = string.Concat("api/IntToBinary/", number);
+
+        try
+        {
+            return await client.GetStringAsync(url);
+        }
+        catch (Exception ex)
+        {
+            return ex.Message;
         }
     }
 }
