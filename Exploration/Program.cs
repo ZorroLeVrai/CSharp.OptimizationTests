@@ -2,7 +2,7 @@
 using Exploration.Threading;
 
 
-MonitorLockDemo.
+new TaskReferencingObjects().
     Run();
 
 Console.ReadLine();
