@@ -82,6 +82,20 @@ public class Ex01FibonacciNumbers : RunBase<int, long>
         }
     }
 
+    public long TailItertiveFibo(int n)
+    {
+        if (n < 2)
+            return n;
+
+        var (cur, l, bl) = (1, 1L, 0L);
+        while (true)
+        {
+            if (cur == n)
+                return l;
+            (cur, l, bl) = (cur + 1, l + bl, l);
+        }
+    }
+
     public override long Process()
     {
         return RecursiveMemoFibo(Input);

@@ -1,4 +1,5 @@
-﻿using BenchmarkConsole.Multithreading;
+﻿using BenchmarkConsole.Exercices;
+using BenchmarkConsole.Multithreading;
 using BenchmarkDotNet.Running;
 
-BenchmarkRunner.Run<PrimeNumbersBenchmark>();
+BenchmarkRunner.Run<FibonacciNumbersBenchmarkV1>();

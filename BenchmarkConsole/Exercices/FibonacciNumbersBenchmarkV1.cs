@@ -36,4 +36,10 @@ public class FibonacciNumbersBenchmarkV1
     {
         fiboNumbers.TailResursiveFibo(nTerme);
     }
+
+    [Benchmark]
+    public void TailIterativeFibo()
+    {
+        fiboNumbers.TailItertiveFibo(nTerme);
+    }
 }
