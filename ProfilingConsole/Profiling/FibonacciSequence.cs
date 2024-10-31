@@ -5,7 +5,7 @@ namespace ConsoleApp.Profiling;
 
 internal class FibonacciSequence : IRunnable
 {
-    private const int terme = 45;
+    private const int terme = 50;
 
     public void Run()
     {

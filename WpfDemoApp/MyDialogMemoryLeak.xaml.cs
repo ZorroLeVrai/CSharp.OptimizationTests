@@ -15,7 +15,7 @@ namespace WpfDemoApp
         {
             InitializeComponent();
 
-            items = new int[10_000_000];
+            items = new int[1_000_000];
         }
 
         public void SubscribeFakePublisher(FakePublisher publisher)

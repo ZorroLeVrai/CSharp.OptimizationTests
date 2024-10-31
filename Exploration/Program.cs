@@ -2,10 +2,11 @@
 using Exploration.Threading;
 
 
-new TaskReferencingObjects().
-    Run();
+//new TaskReferencingObjects().
+//    Run();
 
-Console.ReadLine();
+new DictionaryKeySearchTest().Run();
+
 
 //await new AsyncExample().Run();
 
@@ -16,3 +17,6 @@ Console.ReadLine();
 //WaitBeforePrinting.SychronousWait();
 
 //WaitBeforePrinting.AsychronousWait();
+
+
+Console.ReadLine();

@@ -19,7 +19,9 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "WpfDemoApp", "WpfDemoApp\Wp
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ConsoleApp", "ProfilingConsole\ConsoleApp.csproj", "{82F5AE88-A767-4B4E-9527-9355747086DF}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DistantWebApp", "DistantWebApp\DistantWebApp.csproj", "{B534F020-BBE1-4FC3-8E70-9A1B59CBB1AF}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "DistantWebApp", "DistantWebApp\DistantWebApp.csproj", "{B534F020-BBE1-4FC3-8E70-9A1B59CBB1AF}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BinomeFinderApp", "BinomeFinderApp\BinomeFinderApp.csproj", "{2DC7D9D7-AC88-4E2C-AC20-5A83353E37CE}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -63,6 +65,10 @@ Global
 		{B534F020-BBE1-4FC3-8E70-9A1B59CBB1AF}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{B534F020-BBE1-4FC3-8E70-9A1B59CBB1AF}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{B534F020-BBE1-4FC3-8E70-9A1B59CBB1AF}.Release|Any CPU.Build.0 = Release|Any CPU
+		{2DC7D9D7-AC88-4E2C-AC20-5A83353E37CE}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{2DC7D9D7-AC88-4E2C-AC20-5A83353E37CE}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{2DC7D9D7-AC88-4E2C-AC20-5A83353E37CE}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{2DC7D9D7-AC88-4E2C-AC20-5A83353E37CE}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
