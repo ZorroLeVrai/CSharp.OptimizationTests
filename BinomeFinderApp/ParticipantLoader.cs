@@ -5,7 +5,7 @@ namespace BinomeFinderApp;
 
 internal static class ParticipantLoader
 {
-    private static string FILE_PATH = @"D:\Users\Amine\Prgm\Cours\CSharp_Optimisation_Orsys\Participants.csv";
+    private static string FILE_PATH = @"D:\Users\Amine\Prgm\Cours\CSharp\CSharp_Optimisation_Orsys\Participants.csv";
 
     internal static IReadOnlyList<Participant> LoadParticipants()
     {
