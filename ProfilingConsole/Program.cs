@@ -7,4 +7,6 @@ using ConsoleApp.Profiling;
 //new ConwaySeries()
 //    .Run();
 
-new FibonacciSequence().Run();
+//new FibonacciSequence().Run();
+
+new TestRandomizeArray().Run();
