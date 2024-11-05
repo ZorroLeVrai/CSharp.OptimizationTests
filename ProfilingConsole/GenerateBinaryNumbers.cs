@@ -27,9 +27,9 @@ internal class GenerateBinaryBase
     }
 }
 
-internal class GenerateBinaryAsyncNumbers : GenerateBinaryBase
+internal class GenerateBinaryNumbers : GenerateBinaryBase
 {
-    public GenerateBinaryAsyncNumbers(int nbToGenerate) : base(nbToGenerate)
+    public GenerateBinaryNumbers(int nbToGenerate) : base(nbToGenerate)
     {
     }
 
@@ -45,88 +45,6 @@ internal class GenerateBinaryAsyncNumbers : GenerateBinaryBase
     public async Task DisplayAsync()
     {
         await BinaryDisplayer.DisplayAsync(GenerateBinariesAsync());
-    }
-}
-
-internal class GenerateBinaryParallelAsyncNumbers : GenerateBinaryBase
-{
-    public GenerateBinaryParallelAsyncNumbers(int nbToGenerate) : base(nbToGenerate)
-    {
-    }
-
-    private async IAsyncEnumerable<string> GenerateBinariesAsync()
-    {
-        var tasks = new Task<string>[_nbToGenerate];
-        for (int i = 0; i < _nbToGenerate; ++i)
-        {
-            int randomNumber = _random.Next(256);
-            tasks[i] = GetBinaryAsync(randomNumber);
-        }
-
-        for (int i = 0; i < _nbToGenerate; ++i)
-        {
-            yield return await tasks[i];
-        }
-    }
-
-    public async Task DisplayAsync()
-    {
-        await BinaryDisplayer.DisplayAsync(GenerateBinariesAsync());
-    }
-}
-
-
-internal class GenerateBinaryParallelNumbers : GenerateBinaryBase
-{
-    public GenerateBinaryParallelNumbers(int nbToGenerate) : base(nbToGenerate)
-    {
-    }
-
-    private Task<string>[] GenerateBinaries()
-    {
-        var tasks = new Task<string>[_nbToGenerate];
-        for (int i = 0; i < _nbToGenerate; ++i)
-        {
-            int randomNumber = _random.Next(256);
-            tasks[i] = GetBinaryAsync(randomNumber);
-        }
-
-        Task.WaitAll(tasks);
-
-        return tasks;
-    }
-
-    public void Display()
-    {
-        BinaryDisplayer.Display(GenerateBinaries());
-    }
-}
-
-internal class GenerateBinaryAsapNumbers : GenerateBinaryBase
-{
-    public GenerateBinaryAsapNumbers(int nbToGenerate) : base(nbToGenerate)
-    {
-    }
-
-    public void Display()
-    {
-        Task[] tasks = new Task[_nbToGenerate];
-
-        for (int i = 0; i < _nbToGenerate; ++i)
-        {
-            int randomNumber = _random.Next(256);
-            tasks[i] = DispBinaryStrAsync(GetBinaryAsync(randomNumber));
-            //tasks[i] = GetBinaryAsync(randomNumber)
-            //    .ContinueWith(t => Console.WriteLine(t.Result));
-        }
-
-        Task.WaitAll(tasks);
-
-        static async Task DispBinaryStrAsync(Task<string> task)
-        {
-            var result = await task;
-            await Console.Out.WriteLineAsync(result);
-        }
     }
 }
 

@@ -1,5 +1,8 @@
-﻿using Exercices.Linq;
+﻿using Exercices.Asynchrones;
+using Exercices.Linq;
 using Exercices.Multithreading;
 
-new Ex01SommeInverse()
-    .Run();
+var task = new GenerateBinaryParallelNumbers(10).DisplayAsync();
+task.Wait();
+
+Console.ReadLine();
