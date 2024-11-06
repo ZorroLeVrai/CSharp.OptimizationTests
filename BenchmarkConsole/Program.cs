@@ -3,4 +3,4 @@ using BenchmarkConsole.Exercices;
 using BenchmarkConsole.Multithreading;
 using BenchmarkDotNet.Running;
 
-BenchmarkRunner.Run<DateParserBenchmarks>();
+BenchmarkRunner.Run<FibonacciNumbersBenchmarkV1>();

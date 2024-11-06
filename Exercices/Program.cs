@@ -1,8 +1,10 @@
 ﻿using Exercices.Asynchrones;
+using Exercices.Calculs;
 using Exercices.Linq;
 using Exercices.Multithreading;
 
-var task = new GenerateBinaryParallelNumbers(10).DisplayAsync();
-task.Wait();
+
+var result = new Ex01FibonacciNumbers().LinqParallelFiboV2(20);
+Console.WriteLine(result);
 
 Console.ReadLine();

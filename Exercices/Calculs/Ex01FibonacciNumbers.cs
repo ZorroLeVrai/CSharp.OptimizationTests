@@ -1,4 +1,6 @@
-﻿namespace Exercices.Calculs;
+﻿using System;
+
+namespace Exercices.Calculs;
 
 public class Ex01FibonacciNumbers : RunBase<int, long>
 {
@@ -82,7 +84,7 @@ public class Ex01FibonacciNumbers : RunBase<int, long>
         }
     }
 
-    public long TailItertiveFibo(int n)
+    public long TailIterativeFibo(int n)
     {
         if (n < 2)
             return n;
@@ -94,6 +96,34 @@ public class Ex01FibonacciNumbers : RunBase<int, long>
                 return l;
             (cur, l, bl) = (cur + 1, l + bl, l);
         }
+    }
+
+    public long LinqParallelFibo(int n)
+    {
+        if (n < 2)
+            return n;
+
+        return Enumerable.Range(2, n-1).AsParallel().Aggregate(new { Current = 1, Prev = 0 }, (x, _) => new { Current = x.Prev + x.Current, Prev = x.Current }).Current;
+    }
+
+    public long LinqParallelFiboV2(int n)
+    {
+        if (n < 2)
+            return n;
+
+        return Enumerable.Range(2, n-1).Aggregate((cur: 1, prev: 0), (acc, _) => (acc.cur + acc.prev, acc.cur)).cur;
+    }
+
+    public long ArrayFibo(int n)
+    {
+        Span<long> fiboValues = stackalloc long[n + 1];
+        fiboValues[0] = 0;
+        fiboValues[1] = 1;
+
+        for (int i = 2; i <= n; i++)
+            fiboValues[i] = fiboValues[i - 1] + fiboValues[i - 2];
+
+        return fiboValues[n];
     }
 
     public override long Process()
