@@ -42,6 +42,35 @@ public class GuidAndUrlSimpleTransformer : IGuidAndUrlFriendly
     }
 }
 
+public class GuidUrlSemiOptimizedTranformer : IGuidAndUrlFriendly
+{
+    public Guid FriendlyUrlToGuid(string urlFriendlyId)
+    {
+        throw new NotImplementedException();
+    }
+
+    public string GuidToFriendlyUrl(Guid guid)
+    {
+        var guidBase64Characters = new char[24];
+        Convert.ToBase64CharArray(guid.ToByteArray(), 0, 16, guidBase64Characters, 0);
+
+        for (var i = 0; i < 22; ++i)
+        {
+            switch (guidBase64Characters[i])
+            {
+                case StringConstants.SLASH_CHARACTER:
+                    guidBase64Characters[i] = StringConstants.DASH_CHARACTER;
+                    break;
+                case StringConstants.PLUS_CHARACTER:
+                    guidBase64Characters[i] = StringConstants.UNDERSCORE_CHARACTER;
+                    break;
+            }
+        }
+
+        return new string(guidBase64Characters, 0, 22);
+    }
+}
+
 public class GuidAndUrlOptimizedTransformer : IGuidAndUrlFriendly
 {
     public Guid FriendlyUrlToGuid(string urlFriendlyId)

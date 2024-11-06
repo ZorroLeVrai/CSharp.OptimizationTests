@@ -14,19 +14,27 @@ public class GuidUrlFriendlyTransformerBenchmark
     private const string stringIdTest = "AhxC5qsam0mRI_8C1p9Jug";
 
     private GuidAndUrlSimpleTransformer guidAndUrlSimpleTransformer = new GuidAndUrlSimpleTransformer();
+    private GuidUrlSemiOptimizedTranformer guidUrlSemiOptimizedTranformer = new GuidUrlSemiOptimizedTranformer();
     private GuidAndUrlOptimizedTransformer guidAndUrlOptimizedTransformer = new GuidAndUrlOptimizedTransformer();
 
-    [Benchmark]
+    [Benchmark(Baseline =true)]
     public string GuidToFriendlyUrlSimpleTransformer()
     {
         return guidAndUrlSimpleTransformer.GuidToFriendlyUrl(guidTest);
     }
 
+    //[Benchmark]
+    //public Guid IdToFriendlyUrlSimpleTransformer()
+    //{
+    //    return guidAndUrlSimpleTransformer.FriendlyUrlToGuid(stringIdTest);
+    //}
+
     [Benchmark]
-    public Guid IdToFriendlyUrlSimpleTransformer()
+    public string GuidToFriendlyUrlSemiOptimizedTransformer()
     {
-        return guidAndUrlSimpleTransformer.FriendlyUrlToGuid(stringIdTest);
+        return guidUrlSemiOptimizedTranformer.GuidToFriendlyUrl(guidTest);
     }
+
 
     [Benchmark]
     public string GuidToFriendlyUrlOptimizedTransformer()
@@ -34,9 +42,10 @@ public class GuidUrlFriendlyTransformerBenchmark
         return guidAndUrlOptimizedTransformer.GuidToFriendlyUrl(guidTest);
     }
 
-    [Benchmark]
-    public Guid IdToFriendlyUrlOptimizedTransformer()
-    {
-        return guidAndUrlOptimizedTransformer.FriendlyUrlToGuid(stringIdTest);
-    }
+
+    //[Benchmark]
+    //public Guid IdToFriendlyUrlOptimizedTransformer()
+    //{
+    //    return guidAndUrlOptimizedTransformer.FriendlyUrlToGuid(stringIdTest);
+    //}
 }
