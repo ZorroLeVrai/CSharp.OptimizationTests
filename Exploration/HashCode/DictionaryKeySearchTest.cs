@@ -28,14 +28,17 @@ internal class DictionaryKeySearchTest
 
     public void Run()
     {
+        modifyKey('B', '?');
+        Console.WriteLine(myDico[new CustomKeyType('B')]);
+
+
         //Console.WriteLine(myDico[new CustomKeyType('A')]);
 
         //Console.WriteLine(myDico[new CustomKeyType('B')]);
 
         //Console.WriteLine(myDico[new CustomKeyType('Z')]);
 
-        modifyKey('B', '?');
-        Console.WriteLine(myDico[new CustomKeyType('B')]);
+        //modifyKey('B', '?');
         //if (myDico.TryGetValue(new CustomKeyType('B'), out var valeur))
         //{
         //    Console.WriteLine(valeur);
