@@ -1,6 +1,6 @@
 ﻿namespace Exploration.Dictionaries;
 
-internal class MyDico<TKey, TValue>
+public class MyDico<TKey, TValue>
 {
     private List<BucketData>[] buckets;
     private int bucketCapacity;
@@ -29,8 +29,8 @@ internal class MyDico<TKey, TValue>
                 var newBucketIndex = GetBucketIndex(bucketData.HashCode, newCapacity);
                 if (newBuckets[newBucketIndex] == null)
                     newBuckets[newBucketIndex] = new List<BucketData> { bucketData };
-
-                newBuckets[newBucketIndex].Add(bucketData);
+                else
+                    newBuckets[newBucketIndex].Add(bucketData);
             }
         }
 
@@ -38,7 +38,7 @@ internal class MyDico<TKey, TValue>
         bucketCapacity = newCapacity;
     }
 
-    private int GetBucketIndex(int hashCode, int capacity) => hashCode % capacity;
+    private int GetBucketIndex(int hashCode, int capacity) => Math.Abs(hashCode) % capacity;
 
     private BucketInfo GetBucketInfo(TKey key)
     {
@@ -53,14 +53,22 @@ internal class MyDico<TKey, TValue>
     private bool TryGetBucketDataWithKey(TKey key, out BucketData? bucketKeyData)
     {
         var bucketInfo = GetBucketInfo(key);
+        bucketKeyData = null;
         if (bucketInfo.BucketData == null)
         {
-            bucketKeyData = null;
             return false;
         }
 
-        bucketKeyData = bucketInfo.BucketData.FirstOrDefault(b => b.Key!.Equals(key));
-        return bucketKeyData != null;
+        for (int i = 0; i < bucketInfo.BucketData.Count; ++i)
+        {
+            if (bucketInfo.BucketData[i].Key!.Equals(key))
+            {
+                bucketKeyData = bucketInfo.BucketData[i];
+                return true;
+            }
+        }
+
+        return false;
     }
 
     public bool ContainsKey(TKey key)
@@ -72,7 +80,7 @@ internal class MyDico<TKey, TValue>
     {
         ++Count;
 
-        if (buckets.Length * 0.75 < Count)
+        if (buckets.Length * 0.5 < Count)
             ResizeBuckets(buckets.Length * 2);
     }
 
@@ -100,10 +108,10 @@ internal class MyDico<TKey, TValue>
     {
         get
         {
-            if (!TryGetBucketDataWithKey(key, out var bucketData))
-                throw new KeyNotFoundException();
-
-            return bucketData!.Value;
+            if (TryGetBucketDataWithKey(key, out var bucketData))
+                return bucketData!.DataValue;
+            
+            throw new KeyNotFoundException();
         }
         set
         {
@@ -126,16 +134,16 @@ internal class MyDico<TKey, TValue>
                 else
                 {
                     //update existing key in existing bucket
-                    bucketDataItem.Value = value;
+                    bucketDataItem.DataValue = value;
                 }
             }
         }
     }
 
-    private record BucketInfo(int HashCode, int BucketIndex, List<BucketData> BucketData);
+    private record struct BucketInfo(int HashCode, int BucketIndex, List<BucketData> BucketData);
 
-    private record BucketData(int HashCode, TKey Key, TValue Value)
+    private record BucketData(int HashCode, TKey Key, TValue DataValue)
     {
-        public TValue Value { get; set; } = Value;
+        public TValue DataValue { get; set; } = DataValue;
     }
 }
