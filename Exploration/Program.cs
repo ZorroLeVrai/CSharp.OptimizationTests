@@ -19,4 +19,5 @@ using Exploration.Threading;
 
 //WaitBeforePrinting.AsychronousWait();
 
-SolveRaceConditionReaderWriterLock.Run();
+await new AsyncExample().Run();
+
