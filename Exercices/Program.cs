@@ -6,6 +6,6 @@ using Exercices.Multithreading;
 
 
 //var result = new Ex01FibonacciNumbers().RecursiveFibo(50);
-UseEx1Ennonce.Run();
+UseImmutableV2.Run();
 
 Console.ReadLine();

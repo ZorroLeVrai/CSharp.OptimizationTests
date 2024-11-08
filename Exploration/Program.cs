@@ -19,4 +19,4 @@ using Exploration.Threading;
 
 //WaitBeforePrinting.AsychronousWait();
 
-RaceCondition.Run();
+SolveRaceConditionReaderWriterLock.Run();

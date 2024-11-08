@@ -19,7 +19,7 @@ internal class RaceCondition
         {
             for (int i = 0; i < NB_ITERATION; ++i)
             {
-                sharedCounter += nb;
+                sharedCounter += nb;// sharedCounter = sharedCounter + nb;
             }
         }
     }
