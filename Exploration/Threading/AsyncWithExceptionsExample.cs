@@ -4,7 +4,7 @@ internal class AsyncWithExceptionsExample
 {
     int _nbTasks = 10;
 
-    public async Task RunAsync()
+    public async Task Run()
     {
         var tasks = new Task[_nbTasks];
         for (int i = 0; i < tasks.Length; ++i)
