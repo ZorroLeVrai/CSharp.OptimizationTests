@@ -13,7 +13,7 @@ public class DateParserBenchmarks
     private const string DateTimeInString = "2023-09-28T16:33:06Z";
     private static readonly DateTimeParser DtParsers = new();
 
-    [Benchmark]
+    [Benchmark(Baseline = true)]
     public void TryParseDateTimeFromString()
     {
         DtParsers.TryParseDateTimeFromStr(DateTimeInString, out DateTime dt);

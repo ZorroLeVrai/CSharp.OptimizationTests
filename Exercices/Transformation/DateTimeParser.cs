@@ -2,6 +2,8 @@
 
 namespace Exercices.Transformation;
 
+public delegate int ParseIntDelegate(ReadOnlySpan<char> text);
+
 public class DateTimeParser
 {
     private static readonly char[] SplitChars = new[] { '-', ':', 'T', 'Z' };
