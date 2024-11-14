@@ -9,17 +9,17 @@ public class Ex03ConwaySeriesV1 : RunBase<int, string>
 
     public override int Init()
     {
-        return 40;
+        return 6;
     }
 
-    public override string Process()
+    public string Process(int terme)
     {
         var currentItem = _originalTerm;
-        for (int i = 0; i < Input; ++i)
+        for (int i = 0; i < terme; ++i)
         {
             currentItem = GetNextIteration(currentItem);
         }
-        return currentItem.ToString();
+        return currentItem;
 
         string GetNextIteration(string currentSb)
         {
@@ -50,6 +50,11 @@ public class Ex03ConwaySeriesV1 : RunBase<int, string>
 
             return result;
         }
+    }
+
+    public override string Process()
+    {
+        return Process(Input);
     }
 
     public override void DisplayResult()

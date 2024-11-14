@@ -2,12 +2,9 @@
 
 namespace Exercices.Calculs;
 
-/// <summary>
-/// Compute the Conway series using a StringBuilder
-/// </summary>
-public class Ex03ConwaySeriesV2 : RunBase<int, string>
+public class Ex03ConwaySeriesV3 : RunBase<int, string>
 {
-    private StringBuilder _originalTerm = new StringBuilder("1");
+    private List<byte> _originalTerm = new List<byte> { 1 };
 
     public override int Init()
     {
@@ -21,22 +18,22 @@ public class Ex03ConwaySeriesV2 : RunBase<int, string>
 
     public string Process(int terme)
     {
-        var currentItem = _originalTerm;
-        for (int i=0; i<terme; ++i)
+        IReadOnlyList<byte> currentItem = _originalTerm;
+        for (int i = 0; i < terme; ++i)
         {
             currentItem = GetNextIteration(currentItem);
         }
-        return currentItem.ToString();
+        return ListToString(currentItem);
 
-        StringBuilder GetNextIteration(StringBuilder currentSb)
+        IReadOnlyList<byte> GetNextIteration(IReadOnlyList<byte> currentSb)
         {
-            var strLength = currentSb.Length;
+            var strLength = currentSb.Count;
             if (strLength == 0)
-                return new StringBuilder();
+                return new List<byte>();
 
-            var result = new StringBuilder(strLength);
+            var result = new List<byte>(strLength);
             var previousChar = currentSb[0];
-            var nbOccurences = 1;
+            byte nbOccurences = 1;
 
             for (int i = 1; i < strLength; ++i)
             {
@@ -45,17 +42,27 @@ public class Ex03ConwaySeriesV2 : RunBase<int, string>
                     ++nbOccurences;
                 else
                 {
-                    result.Append(nbOccurences);
-                    result.Append(previousChar);
+                    result.Add(nbOccurences);
+                    result.Add(previousChar);
                     previousChar = currentChar;
                     nbOccurences = 1;
                 }
             }
-            result.Append(nbOccurences);
-            result.Append(previousChar);
+            result.Add(nbOccurences);
+            result.Add(previousChar);
 
             return result;
         }
+    }
+
+    private string ListToString(IReadOnlyList<byte> list)
+    {
+        var sb = new StringBuilder(list.Count);
+        foreach (var item in list)
+        {
+            sb.Append(item);
+        }
+        return sb.ToString();
     }
 
     public override void DisplayResult()

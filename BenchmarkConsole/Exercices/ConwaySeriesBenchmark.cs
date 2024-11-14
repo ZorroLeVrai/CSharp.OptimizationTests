@@ -7,11 +7,16 @@ namespace BenchmarkConsole.Exercices;
 [MemoryDiagnoser]
 [Orderer(SummaryOrderPolicy.FastestToSlowest)]
 [RankColumn]
-[SimpleJob(warmupCount: 5, iterationCount: 10)]
+[SimpleJob(warmupCount: 2, iterationCount: 8)]
 public class ConwaySeriesBenchmark
 {
     private Ex03ConwaySeriesV1? conwaySeriesV1;
     private Ex03ConwaySeriesV2? conwaySeriesV2;
+    private Ex03ConwaySeriesV3? conwaySeriesV3;
+
+    [Params(10, 20, 30, 40)]
+    public int N { get; set; }
+
 
     [GlobalSetup]
     public void SetupData()
@@ -21,17 +26,26 @@ public class ConwaySeriesBenchmark
 
         conwaySeriesV2 = new Ex03ConwaySeriesV2();
         conwaySeriesV2.Initialize();
+
+        conwaySeriesV3 = new Ex03ConwaySeriesV3();
+        conwaySeriesV3.Initialize();
     }
 
-    [Benchmark]
+    [Benchmark(Baseline = true)]
     public void ProcessConwaySeriesV1()
     {
-        conwaySeriesV1!.Process();
+        conwaySeriesV1!.Process(N);
     }
 
     [Benchmark]
     public void ProcessConwaySeriesV2()
     {
-        conwaySeriesV2!.Process();
+        conwaySeriesV2!.Process(N);
+    }
+
+    [Benchmark]
+    public void ProcessConwaySeriesV3()
+    {
+        conwaySeriesV3!.Process(N);
     }
 }
