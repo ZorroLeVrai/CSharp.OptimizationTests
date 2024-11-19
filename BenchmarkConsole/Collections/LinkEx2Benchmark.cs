@@ -7,7 +7,7 @@ namespace BenchmarkConsole.Collections;
 [MemoryDiagnoser]
 [Orderer(SummaryOrderPolicy.FastestToSlowest)]
 [RankColumn]
-[SimpleJob(warmupCount: 1, iterationCount: 8)]
+[SimpleJob(warmupCount: 2, iterationCount: 8)]
 public class LinkEx2Benchmark
 {
     LinqEx2? ex2 = null;
