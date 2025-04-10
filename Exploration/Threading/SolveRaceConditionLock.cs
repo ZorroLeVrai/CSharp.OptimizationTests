@@ -3,6 +3,7 @@
 public class SolveRaceConditionLock
 {
     const int NB_ITERATION = 1000_000;
+    // the volatile keyword is not necessary here, because we are using a lock
     static volatile int sharedCounter;
 
     static object sharedCounterLock = new object();

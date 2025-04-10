@@ -8,7 +8,9 @@ public class AsyncExample
         Console.WriteLine("Step 1");
         PrintThreadId(1);
         //var task = ProcessAsync();
+        var toto = "TOTO";
         await ProcessAsync().ConfigureAwait(false);
+        Console.WriteLine(toto);
         Console.WriteLine("Step 2");
         //LongProcess(3000);
         PrintThreadId(4);
@@ -23,6 +25,7 @@ public class AsyncExample
     {
         Console.WriteLine("Start Process");
         PrintThreadId(2);
+        Console.WriteLine("Task Delay - ProcessAsync");
         //Request base de données
         await Task.Delay(5000).ConfigureAwait(false);
         PrintThreadId(3);
