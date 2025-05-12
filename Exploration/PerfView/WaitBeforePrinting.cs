@@ -30,7 +30,7 @@ public class WaitBeforePrinting
         PrintEndMessage();
     }
 
-    public async void AsychronousWait()
+    public async Task AsychronousWait()
     {
         await Task.Delay(_waitTimeInMs);
         PrintEndMessage();
