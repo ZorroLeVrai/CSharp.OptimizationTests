@@ -1,24 +1,23 @@
-﻿namespace WebAppDemo.Services
+﻿namespace WebAppDemo.Services;
+
+public class StringGenerator
 {
-    public class StringGenerator
+    private int _nbChars = 0;
+
+    public StringGenerator(int nbChars = 1000)
     {
-        private int _nbChars = 0;
+        _nbChars = nbChars;
+    }
 
-        public StringGenerator(int nbChars = 1000)
+    public string Generate()
+    {
+        var currentStr = "";
+        var rnd = new Random();
+        for (int i=0; i < _nbChars; i++)
         {
-            _nbChars = nbChars;
+            currentStr += (char)rnd.Next(48,123);
         }
 
-        public string Generate()
-        {
-            var currentStr = "";
-            var rnd = new Random();
-            for (int i=0; i < _nbChars; i++)
-            {
-                currentStr += (char)rnd.Next(48,123);
-            }
-
-            return currentStr;
-        }
+        return currentStr;
     }
 }

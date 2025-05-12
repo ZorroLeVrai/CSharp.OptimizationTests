@@ -10,8 +10,8 @@ using ConsoleApp.Profiling;
 
 //new GenerateBinaryNumbers(20).DisplayAsync().Wait();
 
-//new FibonacciSequence().Run();
+new FibonacciSequence().Run();
 
-new ConwaySeries().Run();
+//new ConwaySeries().Run();
 
 //new TestRandomizeArray().Run();
