@@ -9,6 +9,7 @@ public interface ISearchPositionInList
 
 public class OptimizedSearchPositionInList
 {
+    // Dictionary <data, position>
     private readonly Dictionary<int, int> _collection;
 
     public OptimizedSearchPositionInList(IEnumerable<int> elements)

@@ -9,6 +9,7 @@ public interface ISearchPositionInListWithDuplicates
 
 public class OptimizedSearchPositionInListWithDuplicates : ISearchPositionInListWithDuplicates
 {
+    // ILookup <data, position>
     private readonly ILookup<int, int> _collection;
 
     public OptimizedSearchPositionInListWithDuplicates(IEnumerable<int> elements)
