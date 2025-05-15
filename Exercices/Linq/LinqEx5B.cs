@@ -20,7 +20,11 @@ internal class LinqEx5B : RunBase<IEnumerable<LinqEx5B.Student>, Dictionary<stri
         if (Input == null)
             throw new ArgumentNullException(nameof(Input));
 
-        return Input.SelectMany(student => student.Courses.Select(course => new { Course = course, Student = student.Name }))
+        //return Input.SelectMany(student => student.Courses.Select(course => new { Course = course, Student = student.Name }))
+        //    .GroupBy(item => item.Course, item => item.Student)
+        //    .ToDictionary(group => group.Key, group => group.AsEnumerable());
+
+        return Input.SelectMany(student => student.Courses, (student, course) => (Course: course, Student: student.Name ))
             .GroupBy(item => item.Course, item => item.Student)
             .ToDictionary(group => group.Key, group => group.AsEnumerable());
     }

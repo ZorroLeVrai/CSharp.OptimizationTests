@@ -56,7 +56,7 @@ public class LinqEx2 : RunBase<string[], Dictionary<string, int>>
         if (Input is null)
             return new Dictionary<string, int>();
 
-        return ToOccurenceDico2(Input);
+        return ToOccurenceDico(Input);
     }
 
     public override void DisplayResult()
