@@ -58,7 +58,7 @@ internal class GenerateBinaryNumbers : GenerateBinaryBase
         //return tasks.Select(async t => { return await t; });
     }
 
-    public async void DisplayAsync()
+    public async Task DisplayAsync()
     {
         await foreach (var resultItem in GenerateBinariesAsync())
         {
