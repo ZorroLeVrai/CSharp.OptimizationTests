@@ -32,7 +32,7 @@ class UserService
         if (isCache)
         {
             // Retourne les utilisateurs depuis le cache
-            return Task.FromResult((IEnumerable<string>)new List<string> { "Alice", "Bob", "Charlie" }));
+            return Task.FromResult((IEnumerable<string>)new List<string> { "Alice", "Bob", "Charlie" });
         }
 
         var task = Task.Run(GetUsers); // Simule un traitement long en tâche de fond

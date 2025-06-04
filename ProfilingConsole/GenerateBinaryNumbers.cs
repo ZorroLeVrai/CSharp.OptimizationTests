@@ -1,4 +1,6 @@
-﻿namespace ConsoleApp;
+﻿using System.ComponentModel.DataAnnotations;
+
+namespace ConsoleApp;
 
 internal class GenerateBinaryBase
 {
@@ -9,7 +11,7 @@ internal class GenerateBinaryBase
         _nbToGenerate = nbToGenerate;
     }
 
-    protected string GetBinary(int number)
+    protected async Task<string> GetBinaryAsync(int number)
     {
         using HttpClient client = new();
 
@@ -18,7 +20,7 @@ internal class GenerateBinaryBase
 
         try
         {
-            return client.GetStringAsync(url).Result;
+            return await client.GetStringAsync(url);
         }
         catch (Exception ex)
         {
@@ -33,24 +35,39 @@ internal class GenerateBinaryNumbers : GenerateBinaryBase
     {
     }
 
-    private async IEnumerable<string> GenerateBinaries()
+    private async Task<string> GetBinaryWrapper(int number, int index)
     {
-        var tab = new string[_nbToGenerate];
+        var result = await GetBinaryAsync(number);
+        Console.WriteLine("{0}: {1}", index, result);
+        return result;
+    }
+
+    private IAsyncEnumerable<Task<string>> GenerateBinariesAsync()
+    {
+        var tasks = new Task<string>[_nbToGenerate];
         for (int i = 0; i < _nbToGenerate; ++i)
         {
             int randomNumber = _random.Next(256);
-            tab[i] = GetBinary(randomNumber);
+            tasks[i] = GetBinaryAsync(randomNumber);
         }
 
-        return tab;
+        return Task.WhenEach(tasks);
+
+        //Task.WaitAll(tasks);
+        //return tasks.Select(t => t.Result);
+        //return tasks.Select(async t => { return await t; });
     }
 
-    public void Display()
+    public async void DisplayAsync()
     {
-        foreach (var resultItem in GenerateBinaries())
+        await foreach (var resultItem in GenerateBinariesAsync())
         {
-            Console.WriteLine(resultItem);
+            Console.WriteLine(await resultItem);
         }
+        //foreach(var resultItem in GenerateBinariesAsync())
+        //{
+        //    Console.WriteLine(resultItem);
+        //}
     }
 }
 

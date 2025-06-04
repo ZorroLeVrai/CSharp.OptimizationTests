@@ -2,10 +2,12 @@
 
 public static class ConverterService
 {
-    public static string IntToBinary(int value)
+    static private Random random = new Random();
+
+    public async static Task<string> IntToBinaryAsync(int value)
     {
-        //Task.Delay(1000);
-        Thread.Sleep(1000);
+        var rand = random.Next(500, 4000); // Simulate some delay
+        await Task.Delay(rand);
         return Convert.ToString(value, 2);
     }
 }
