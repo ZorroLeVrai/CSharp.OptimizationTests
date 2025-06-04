@@ -9,7 +9,7 @@ internal class GenerateBinaryBase
         _nbToGenerate = nbToGenerate;
     }
 
-    protected async Task<string> GetBinaryAsync(int number)
+    protected string GetBinary(int number)
     {
         using HttpClient client = new();
 
@@ -18,7 +18,7 @@ internal class GenerateBinaryBase
 
         try
         {
-            return await client.GetStringAsync(url);
+            return client.GetStringAsync(url).Result;
         }
         catch (Exception ex)
         {
@@ -33,18 +33,24 @@ internal class GenerateBinaryNumbers : GenerateBinaryBase
     {
     }
 
-    private async IAsyncEnumerable<string> GenerateBinariesAsync()
+    private async IEnumerable<string> GenerateBinaries()
     {
+        var tab = new string[_nbToGenerate];
         for (int i = 0; i < _nbToGenerate; ++i)
         {
             int randomNumber = _random.Next(256);
-            yield return await GetBinaryAsync(randomNumber);
+            tab[i] = GetBinary(randomNumber);
         }
+
+        return tab;
     }
 
-    public async Task DisplayAsync()
+    public void Display()
     {
-        await BinaryDisplayer.DisplayAsync(GenerateBinariesAsync());
+        foreach (var resultItem in GenerateBinaries())
+        {
+            Console.WriteLine(resultItem);
+        }
     }
 }
 
