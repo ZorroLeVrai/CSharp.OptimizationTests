@@ -20,7 +20,7 @@ public class Ex3SearchInCollectionBenchmark
     [GlobalSetup]
     public void SetupData()
     {
-        _collection = Enumerable.Range(0, NbElements);
+        _collection = Enumerable.Range(0, NbElements).ToList();
         _optimizedSearch = new OptimizedSearchInList(_collection);
         _naiveSearch = new NaiveSearchInList(_collection);
     }
@@ -28,12 +28,12 @@ public class Ex3SearchInCollectionBenchmark
     [Benchmark(Baseline=true)]
     public void NaiveContains()
     {
-        _naiveSearch.Contains(NbElements-1);
+        _naiveSearch.Contains(NbElements / 2);
     }
 
     [Benchmark]
     public void OptimizedContains()
     {
-        _optimizedSearch.Contains(NbElements-1);
+        _optimizedSearch.Contains(NbElements / 2);
     }
 }

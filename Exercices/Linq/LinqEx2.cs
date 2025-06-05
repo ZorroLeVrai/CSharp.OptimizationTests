@@ -7,16 +7,23 @@ public class LinqEx2 : RunBase<string[], Dictionary<string, int>>
     public Dictionary<string, int> ToOccurenceDico(IEnumerable<string> items)
     {
         return items
-            .GroupBy(item => item)
-            .ToDictionary(group => group.Key, group => group.Count());
+            .CountBy(item => item)
+            .ToDictionary();
     }
 
     public Dictionary<string, int> ToOccurenceDico2(IEnumerable<string> items)
     {
-        return items.Distinct().ToDictionary(item => item, item => items.Count(i => i == item));
+        return items
+            .GroupBy(item => item)
+            .ToDictionary(group => group.Key, group => group.Count());
     }
 
     public Dictionary<string, int> ToOccurenceDico3(IEnumerable<string> items)
+    {
+        return items.Distinct().ToDictionary(item => item, item => items.Count(i => i == item));
+    }
+
+    public Dictionary<string, int> ToOccurenceDico4(IEnumerable<string> items)
     {
         return items
             .Aggregate(new Dictionary<string, int>(), (Dictionary<string, int> acc, string cur) =>
@@ -30,7 +37,7 @@ public class LinqEx2 : RunBase<string[], Dictionary<string, int>>
             });
     }
 
-    public Dictionary<string, int> ToOccurenceDico4(IEnumerable<string> items)
+    public Dictionary<string, int> ToOccurenceDico5(IEnumerable<string> items)
     {
         return items
             .Aggregate(new Dictionary<string, int>(), (Dictionary<string, int> acc, string cur) =>
