@@ -43,12 +43,6 @@ public class PrimeNumbersBenchmark
     }
 
     [Benchmark]
-    public void LinqPrimeV1Compute()
-    {
-        _filterPrimes!.LinqPrimeV1Compute(_collection);
-    }
-
-    [Benchmark]
     public void LinqWithCacheCompute()
     {
         _filterPrimes!.LinqWithCacheCompute(_collection);

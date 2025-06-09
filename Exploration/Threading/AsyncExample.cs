@@ -4,21 +4,40 @@ public class AsyncExample
 {
     public async Task Run()
     {
-        Console.WriteLine("Start Prgm");
-        Console.WriteLine("Step 1");
-        PrintThreadId(1);
+        //Console.WriteLine("Start Prgm");
+        //Console.WriteLine("Step 1");
+        //PrintThreadId(1);
+        //var taskProcess =  ProcessAsync(); // Appel asynchrone
+        //PrintThreadId(4);
+        //Thread.Sleep(8000); // Simule un traitement synchrone qui prend du temps
+        //Console.WriteLine("Traitement tâche async");
+        //await taskProcess; // Attente de la fin de la tâche asynchrone
+        //PrintThreadId(5);
+
+
+
+        Console.WriteLine("Etape 1");
+        var task = Task.Delay(2000);
+        Console.WriteLine("Etape 2");
+        Thread.Sleep(4000);
+        Console.WriteLine("Etape 3");
+        await task; // Attente de la tâche asynchrone
+        Console.WriteLine("Etape 4");
+
+
+
         //var task = ProcessAsync();
-        var toto = "TOTO";
-        await ProcessAsync().ConfigureAwait(false);
-        Console.WriteLine(toto);
-        Console.WriteLine("Step 2");
-        //LongProcess(3000);
-        PrintThreadId(4);
-        Console.WriteLine("Step 3");
-        //PrintThreadId(1);
-        //await task;
-        //PrintThreadId(1);
-        Console.WriteLine("End Prgm");
+        //var toto = "TOTO";
+        //await ProcessAsync();
+        //Console.WriteLine(toto);
+        //Console.WriteLine("Step 2");
+        ////LongProcess(3000);
+        //PrintThreadId(4);
+        //Console.WriteLine("Step 3");
+        ////PrintThreadId(1);
+        ////await task;
+        ////PrintThreadId(1);
+        //Console.WriteLine("End Prgm");
     }
 
     public async Task ProcessAsync()
@@ -27,10 +46,12 @@ public class AsyncExample
         PrintThreadId(2);
         Console.WriteLine("Task Delay - ProcessAsync");
         //Request base de données
-        await Task.Delay(5000).ConfigureAwait(false);
+        await Task.Delay(5000).ConfigureAwait(true);
         PrintThreadId(3);
         Console.WriteLine("End Process");
     }
+
+
 
     public Task ProcessSync()
 
