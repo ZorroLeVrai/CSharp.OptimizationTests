@@ -16,8 +16,7 @@ public class Ex01FibonacciNumbers : RunBase<int, long>
 
         var beforeLast = 0L;  //n-2
         var last = 1L;  //n-1
-        var currentIndex = 1;
-        while (currentIndex++ < terme)
+        for (var currentIndex = 1; currentIndex < terme; ++currentIndex)
         {
             //var tempBeforeLast = beforeLast;
             //beforeLast = last;
