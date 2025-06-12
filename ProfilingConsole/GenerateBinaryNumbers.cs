@@ -11,7 +11,7 @@ internal class GenerateBinaryBase
         _nbToGenerate = nbToGenerate;
     }
 
-    protected async Task<string> GetBinaryAsync(int number)
+    protected string GetBinary(int number)
     {
         using HttpClient client = new();
 
@@ -20,7 +20,7 @@ internal class GenerateBinaryBase
 
         try
         {
-            return await client.GetStringAsync(url);
+            return client.GetStringAsync(url).Result;
         }
         catch (Exception ex)
         {
