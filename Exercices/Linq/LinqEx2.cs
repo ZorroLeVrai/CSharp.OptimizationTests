@@ -20,7 +20,9 @@ public class LinqEx2 : RunBase<string[], Dictionary<string, int>>
 
     public Dictionary<string, int> ToOccurenceDico3(IEnumerable<string> items)
     {
-        return items.Distinct().ToDictionary(item => item, item => items.Count(i => i == item));
+        return items
+            .Distinct()
+            .ToDictionary(item => item, item => items.Count(i => i == item));
     }
 
     public Dictionary<string, int> ToOccurenceDico4(IEnumerable<string> items)

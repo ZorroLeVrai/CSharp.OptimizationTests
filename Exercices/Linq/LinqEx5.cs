@@ -11,14 +11,27 @@ internal class LinqEx5 : RunBase<IEnumerable<LinqEx5.Student>, Dictionary<string
             new Student { Name = "Charlie", Courses = new string[] { "Math", "Physics", "Chemistry" } }
         };
     }
+
+    public Dictionary<string, int> ProcessToDictionary(IEnumerable<Student> students)
+    {
+        return students.SelectMany(student => student.Courses)
+            .CountBy(course => course)
+            .ToDictionary();
+    }
+
+    public Dictionary<string, int> ProcessToDictionary2(IEnumerable<Student> students)
+    {
+        return students.SelectMany(student => student.Courses)
+            .GroupBy(course => course)
+            .ToDictionary(group => group.Key, group => group.Count());
+    }
+
     public override Dictionary<string, int> Process()
     {
         if (Input == null)
             throw new ArgumentNullException("input");
 
-        return Input.SelectMany(etudiant => etudiant.Courses)
-            .GroupBy(item => item)
-            .ToDictionary(group => group.Key, group => group.Count());
+        return ProcessToDictionary(Input);
     }
 
     public override void DisplayResult()
