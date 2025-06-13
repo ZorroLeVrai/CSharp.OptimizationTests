@@ -44,11 +44,17 @@ internal class GenerateBinaryNumbers : GenerateBinaryBase
 
     private async IAsyncEnumerable<string> GenerateBinariesAsync()
     {
-        //var tasks = new Task<string>[_nbToGenerate];
+        var tasks = new Task<string>[_nbToGenerate];
         for (int i = 0; i < _nbToGenerate; ++i)
         {
             int randomNumber = _random.Next(256);
-            yield return await GetBinaryAsync(randomNumber);
+            tasks[i] = GetBinaryAsync(randomNumber);
+        }
+
+        var results = await Task.WhenAll(tasks);
+        foreach (var result in results)
+        {
+            yield return result;
         }
 
         //return Task.WhenEach(tasks);

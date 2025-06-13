@@ -31,10 +31,14 @@ internal class ExceptionHandling
 
         var tasks = new Task<int>[]
         {
-            GetNumberAsync(1, new Exception("Exception 1")),
-            GetNumberAsync(2, new OperationCanceledException("Exception 2")),
-            //GetNumberAsync(2, cts.Token),
-            GetNumberAsync(3, new Exception("Exception 3"))
+            GetNumberAsync(1, new Exception("Task 1")),
+            GetNumberAsync(2, cts.Token),
+            GetNumberAsync(3)
+
+            //GetNumberAsync(1, new Exception("Exception 1")),
+            //GetNumberAsync(2, new OperationCanceledException("Exception 2")),
+            ////GetNumberAsync(2, cts.Token),
+            //GetNumberAsync(3, new Exception("Exception 3"))
         };
 
         cts.Cancel();
@@ -44,7 +48,8 @@ internal class ExceptionHandling
 
     public async Task HandlingExceptionV1()
     {
-        var whenAllTasks = Task.WhenAll(CreateTasks());
+        var tasks = CreateTasks();
+        var whenAllTasks = Task.WhenAll(tasks);
 
         try
         {
