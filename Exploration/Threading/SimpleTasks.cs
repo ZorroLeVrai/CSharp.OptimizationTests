@@ -6,7 +6,7 @@ internal class SimpleTasks
     {
         for (int i = 0; i < nbLoop; ++i)
         {
-            Console.WriteLine("{0} - Loop {1}", taskName, i);
+            Console.WriteLine("{0} {1} - Loop {2}", taskName, Thread.GetCurrentProcessorId(), i);
             Thread.Sleep(500);
         }
     }

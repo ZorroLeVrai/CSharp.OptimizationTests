@@ -7,7 +7,7 @@ internal class SimpleThreads
         var nbLoop = (int)(nbLoopObj ?? 5);
         for (int i = 0; i < nbLoop; ++i)
         {
-            Console.WriteLine("{0} - Loop {1}", Thread.CurrentThread.Name, i);
+            Console.WriteLine("{0} - {1} - Loop {2}", Thread.CurrentThread.Name, Thread.GetCurrentProcessorId(), i);
             Thread.Sleep(500);
         }
     }
