@@ -1,6 +1,4 @@
-﻿using Exploration.Dictionaries;
-using Exploration.HashCode;
-using Exploration.Threading;
+﻿using Exploration.Async;
 
 
 //new TaskReferencingObjects().
@@ -19,5 +17,8 @@ using Exploration.Threading;
 
 //WaitBeforePrinting.AsychronousWait();
 
-await new AsyncExample().Run();
+//await new YieldExample().LauncherUsingAwaitAsync(6);
 
+//await new TaskWait().LaunchUsingWhenEachAsync(6);
+
+await new ExceptionHandling().HandlingExceptionV2();
