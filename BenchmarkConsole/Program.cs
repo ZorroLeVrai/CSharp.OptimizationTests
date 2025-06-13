@@ -1,10 +1,11 @@
 ﻿using BenchmarkConsole.Exercices;
+using BenchmarkConsole.Multithreading;
 using BenchmarkConsole.Operations;
 using BenchmarkDotNet.Running;
 using Exercices.Calculs;
 
 //BenchmarkRunner.Run<ConwaySeriesBenchmark>();
-BenchmarkRunner.Run<FibonacciNumbersBenchmarkV1>();
+BenchmarkRunner.Run<SumDigitBenchmark>();
 
 
 //var conwaySeriesV1 = new Ex03ConwaySeriesV1();

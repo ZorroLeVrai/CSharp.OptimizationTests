@@ -4,7 +4,7 @@ public class Ex02SumDigits : RunBase<int[], InputOutputResult[]>
 {
     private const int NB_ELEMENTS = 10;
     private const int MAX_VALUE_TO_PROCESS = 1000;
-    private InputOutputResult[] _cachedResult = new InputOutputResult[MAX_VALUE_TO_PROCESS];
+    private InputOutputResult?[] _cachedResult = new InputOutputResult?[MAX_VALUE_TO_PROCESS];
 
     public override int[] Init()
     {
@@ -14,8 +14,21 @@ public class Ex02SumDigits : RunBase<int[], InputOutputResult[]>
 
     public void InitCache()
     {
-        for (int i = 0; i< MAX_VALUE_TO_PROCESS; i++)
-            _cachedResult[i] = ProcessNumber(i);
+        Array.Fill(_cachedResult, null);
+        //for (int i = 0; i< MAX_VALUE_TO_PROCESS; i++)
+        //{
+        //    _cachedResult[i] = ProcessNumber(i);
+        //}
+    }
+
+    private InputOutputResult GetFromCache(int index)
+    {
+        if (_cachedResult[index] == null)
+        {
+            Interlocked.Exchange(ref _cachedResult[index], ProcessNumber(index));
+        }
+
+        return _cachedResult[index] ?? throw new InvalidOperationException("Cached result is null for index " + index);
     }
 
     public int[] GenerateNumbers(int nb)
@@ -41,7 +54,7 @@ public class Ex02SumDigits : RunBase<int[], InputOutputResult[]>
         if (useCache)
         {
             for (int i = 0; i < inputElements.Length; ++i)
-                result[i] = _cachedResult[inputElements[i]];
+                result[i] = GetFromCache(inputElements[i]);
         }
         else
         {
@@ -64,7 +77,7 @@ public class Ex02SumDigits : RunBase<int[], InputOutputResult[]>
         {
             Parallel.For(0, inputElements.Length, i =>
             {
-                result[i] = _cachedResult[inputElements[i]];
+                result[i] = GetFromCache(inputElements[i]);
             });
         }
         else
@@ -143,7 +156,7 @@ public class Ex02SumDigits : RunBase<int[], InputOutputResult[]>
         void ProcessRangeWithCache(uint fromInclusive, uint toExclusive)
         {
             for (uint i = fromInclusive; i < toExclusive; ++i)
-                result[i] = _cachedResult[inputElements[i]];
+                result[i] = GetFromCache(inputElements[i]);
         }
     }
 
