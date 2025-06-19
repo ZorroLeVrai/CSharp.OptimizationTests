@@ -44,7 +44,8 @@ public class Ex02SumDigits : RunBase<int[], InputOutputResult[]>
             if (number < 10)
                 return number + currentSum;
 
-            return RecSumDigits(number / 10, currentSum + number % 10);
+            var (quotient, remainder) = Math.DivRem(number, 10);
+            return RecSumDigits(quotient, currentSum + remainder);
         }
     }
 

@@ -12,7 +12,7 @@ public class Ex01SommeInverse : RunBase<uint, double>
     public double SimpleProcess(uint nbTerme)
     {
         double sum = 0;
-        for (long i = 1; i <= nbTerme; ++i)
+        for (int i = 1; i <= nbTerme; ++i)
             sum += 1.0 / i;
 
         return sum;
@@ -33,16 +33,12 @@ public class Ex01SommeInverse : RunBase<uint, double>
             .Sum(x => 1.0 / x);
     }
 
-    public double ParallelWithMaxDegreeWithLock(uint nbTerme, int nbParallelism)
+    public double ParallelForWithLock(uint nbTerme)
     {
         object obj = new object();
-        var parallelOptions = new ParallelOptions()
-        {
-            MaxDegreeOfParallelism = nbParallelism
-        };
 
         double sum = 0;
-        Parallel.For(1, (int)nbTerme+1, parallelOptions, i =>
+        Parallel.For(1, (int)nbTerme+1, i =>
         {
             lock(obj)
             {
@@ -53,16 +49,12 @@ public class Ex01SommeInverse : RunBase<uint, double>
         return sum;
     }
 
-    public double ParallelWithMaxDegreeWithSpinLock(uint nbTerme, int nbParallelism)
+    public double ParallelForWithSpinLock(uint nbTerme)
     {
         var spinLock = new SpinLock();
-        var parallelOptions = new ParallelOptions()
-        {
-            MaxDegreeOfParallelism = nbParallelism
-        };
 
         double sum = 0;
-        Parallel.For(1, (int)nbTerme + 1, parallelOptions, i =>
+        Parallel.For(1, (int)nbTerme + 1, i =>
         {
             var lockTaken = false;
             try

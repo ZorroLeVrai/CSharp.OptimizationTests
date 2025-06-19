@@ -26,7 +26,7 @@ public class SolveRaceConditionOneThread
         }
     }
 
-    public void Run()
+    static public void Run()
     {
         Execute();
         Console.WriteLine($"sharedCounter: {sharedCounter}");

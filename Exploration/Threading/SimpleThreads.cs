@@ -20,7 +20,7 @@ internal class SimpleThreads
         var thread2 = new Thread(ExecuteProc);
         thread2.Name = "Thread 2";
 
-        thread1.Start(5);
-        thread2.Start(5);
+        thread1.Start(10);
+        thread2.Start(10);
     }
 }

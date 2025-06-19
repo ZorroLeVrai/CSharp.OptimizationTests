@@ -10,11 +10,19 @@ internal class ParallelForExample
 {
     public static void Run()
     {
-        var numbers = Enumerable.Range(1, 1000);
-        var totalSum = 0;
+        var numbers = Enumerable.Range(1, 1000).ToArray();
+        var doubles = new int[numbers.Length];
 
-        Parallel.ForEach(numbers, number => Interlocked.Add(ref totalSum, number));
-        //Parallel.ForEach(numbers, number => totalSum += number);
-        Console.WriteLine("totalSum: {0}", totalSum);
+        //for (int i = 0; i < numbers.Length; ++i)
+        //{
+        //    doubles[i] = 2*numbers[i];
+        //}
+
+        Parallel.For(0, numbers.Length, i =>
+        {
+            doubles[i] = 2 * numbers[i];
+        });
+
+        Console.WriteLine("Doubles: {0}", string.Join(", ", doubles));
     }
 }

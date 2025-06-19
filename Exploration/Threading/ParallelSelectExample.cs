@@ -5,7 +5,7 @@ internal class ParallelSelectExample
     public static void Run()
     {
         var numbers = Enumerable.Range(1, 1000);
-        var doubledNumbers = numbers.AsParallel().AsOrdered().Select(x => x * 2).ToList();
+        var doubledNumbers = numbers.AsParallel().AsOrdered().Select(x => x * 2).ToArray();
         Console.WriteLine(string.Join(",", doubledNumbers));
     }
 }

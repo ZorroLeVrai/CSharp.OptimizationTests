@@ -26,15 +26,15 @@ public class SumInverseBenchmark
     }
 
     [Benchmark]
-    public void ParallelWithMaxDegreeWithLock()
+    public void ParallelForWithLock()
     {
-        computer.ParallelWithMaxDegreeWithLock(NB_TERME, 100);
+        computer.ParallelForWithLock(NB_TERME);
     }
 
     [Benchmark]
-    public void ParallelWithMaxDegreeWithSpinLock()
+    public void ParallelForWithSpinLock()
     {
-        computer.ParallelWithMaxDegreeWithSpinLock(NB_TERME, 100);
+        computer.ParallelForWithSpinLock(NB_TERME);
     }
 
     [Benchmark]
