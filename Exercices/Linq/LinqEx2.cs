@@ -27,6 +27,15 @@ public class LinqEx2 : RunBase<string[], Dictionary<string, int>>
 
     public Dictionary<string, int> ToOccurenceDico4(IEnumerable<string> items)
     {
+        //Dictionary<string, int> acc = new Dictionary<string, int>();
+        //foreach (var item in items) {
+        //    if (acc.TryGetValue(item, out int occurence))
+        //        acc[item] = occurence + 1;
+        //    else
+        //        acc.Add(item, 1);
+        //}
+        //return acc;
+
         return items
             .Aggregate(new Dictionary<string, int>(), (Dictionary<string, int> acc, string cur) =>
             {

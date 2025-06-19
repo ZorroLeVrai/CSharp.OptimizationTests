@@ -2,7 +2,7 @@
 
 namespace Exercices.Linq;
 
-internal class LinqEx5B : RunBase<IEnumerable<LinqEx5B.Student>, Dictionary<string, IEnumerable<string>>>
+public class LinqEx5B : RunBase<IEnumerable<LinqEx5B.Student>, Dictionary<string, IEnumerable<string>>>
 {
     public override IEnumerable<Student> Init()
     {
@@ -15,18 +15,35 @@ internal class LinqEx5B : RunBase<IEnumerable<LinqEx5B.Student>, Dictionary<stri
         };
     }
 
+    public Dictionary<string, IEnumerable<string>> ProcessGroupByToDictionary(IEnumerable<Student> students)
+    {
+        return students.SelectMany(student => student.Courses, (student, course) => (Course: course, Student: student.Name))
+            .GroupBy(item => item.Course, item => item.Student)
+            .ToDictionary(group => group.Key, group => group.AsEnumerable());
+    }
+
+    public Dictionary<string, IEnumerable<string>> ProcessAggregateToDictionary(IEnumerable<Student> students)
+    {
+        return students.SelectMany(student => student.Courses, (student, course) => (Course: course, Student: student.Name))
+            .Aggregate(new Dictionary<string, List<string>>(), (acc, cur) =>
+            {
+                if (!acc.TryGetValue(cur.Course, out var studentsList))
+                {
+                    studentsList = new List<string>();
+                    acc[cur.Course] = studentsList;
+                }
+                studentsList.Add(cur.Student);
+                return acc;
+            })
+            .ToDictionary(kvp => kvp.Key, kvp => kvp.Value.AsEnumerable());
+    }
+
     public override Dictionary<string, IEnumerable<string>> Process()
     {
         if (Input == null)
             throw new ArgumentNullException(nameof(Input));
 
-        //return Input.SelectMany(student => student.Courses.Select(course => new { Course = course, Student = student.Name }))
-        //    .GroupBy(item => item.Course, item => item.Student)
-        //    .ToDictionary(group => group.Key, group => group.AsEnumerable());
-
-        return Input.SelectMany(student => student.Courses, (student, course) => (Course: course, Student: student.Name ))
-            .GroupBy(item => item.Course, item => item.Student)
-            .ToDictionary(group => group.Key, group => group.AsEnumerable());
+        return ProcessAggregateToDictionary(Input);
     }
 
     public override void DisplayResult()
