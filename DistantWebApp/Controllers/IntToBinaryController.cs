@@ -11,8 +11,8 @@ public class IntToBinaryController : ControllerBase
 {
     // GET api/<IntToBinaryController>/5
     [HttpGet("{value}")]
-    public Task<string> GetAsync(int value)
+    public string Get(int value)
     {
-        return ConverterService.IntToBinaryAsync(value);
+        return ConverterService.IntToBinary(value);
     }
 }
