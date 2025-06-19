@@ -6,7 +6,7 @@ public class Ex01FibonacciNumbers : RunBase<int, long>
 {
     public override int Init()
     {
-        return 40;
+        return 60;
     }
 
     public long IterativeFibo(int terme)
@@ -132,7 +132,7 @@ public class Ex01FibonacciNumbers : RunBase<int, long>
 
     public override long Process()
     {
-        return RecursiveMemoFibo(Input);
+        return RecursiveFibo(Input);
     }
 
     public override void DisplayResult()

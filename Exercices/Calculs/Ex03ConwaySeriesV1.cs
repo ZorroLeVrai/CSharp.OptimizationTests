@@ -9,7 +9,7 @@ public class Ex03ConwaySeriesV1 : RunBase<int, string>
 
     public override int Init()
     {
-        return 6;
+        return 100;
     }
 
     public string Process(int terme)

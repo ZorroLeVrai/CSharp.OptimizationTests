@@ -17,6 +17,15 @@ public class OptimizedSearchPositionInList
         var index = 0;
         _collection = elements
             .ToDictionary(element => element, _ => index++);
+
+        //_collection = new Dictionary<int, int>();
+        //index = 0;
+        //foreach (var element in elements)
+        //{
+        //    _collection[element] = index;
+            
+        //    ++index;
+        //}
     }
 
     public bool Contains(int item)
