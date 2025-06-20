@@ -2,8 +2,18 @@
 
 public class AsyncExample
 {
-    public async Task Run()
+    public async Task RunAsync()
     {
+        Console.WriteLine("Etape 1");
+        var task = ProcessAsync();
+        Console.WriteLine("Etape 2");
+        //Simule un traitement synchrone qui prend du temps
+        Thread.Sleep(4000);
+        Console.WriteLine("Etape 3 - Fin du traitement");
+        await task; // Attente de la fin de la tâche asynchrone
+        Console.WriteLine("Fin du programme");
+
+
         //Console.WriteLine("Start Prgm");
         //Console.WriteLine("Step 1");
         //PrintThreadId(1);
@@ -15,14 +25,6 @@ public class AsyncExample
         //PrintThreadId(5);
 
 
-
-        Console.WriteLine("Etape 1");
-        var task = Task.Delay(2000);
-        Console.WriteLine("Etape 2");
-        Thread.Sleep(4000);
-        Console.WriteLine("Etape 3");
-        await task; // Attente de la tâche asynchrone
-        Console.WriteLine("Etape 4");
 
 
 
@@ -46,9 +48,9 @@ public class AsyncExample
         PrintThreadId(2);
         Console.WriteLine("Task Delay - ProcessAsync");
         //Request base de données
-        await Task.Delay(5000).ConfigureAwait(true);
+        await Task.Delay(5000);
         PrintThreadId(3);
-        Console.WriteLine("End Process");
+        Console.WriteLine("End ProcessAsync");
     }
 
 
