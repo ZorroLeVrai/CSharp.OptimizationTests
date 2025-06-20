@@ -35,12 +35,12 @@ public class Ex01SommeInverse : RunBase<uint, double>
 
     public double ParallelForWithLock(uint nbTerme)
     {
-        object obj = new object();
+        object lockObject = new object();
 
         double sum = 0;
         Parallel.For(1, (int)nbTerme+1, i =>
         {
-            lock(obj)
+            lock(lockObject)
             {
                 sum += 1.0 / i;
             }
@@ -89,16 +89,6 @@ public class Ex01SommeInverse : RunBase<uint, double>
         Task.WaitAll(tasks);
 
         return tasks.Sum(task => task.Result);
-
-
-        double ProcessWithBoundaries(uint minTerme, uint maxTerme)
-        {
-            double sum = 0;
-            for (uint i = minTerme; i <= maxTerme; ++i)
-                sum += 1.0 / i;
-            
-            return sum;
-        }
     }
 
     public double SplitParallelProcessV2(uint nbTerme)
@@ -115,15 +105,15 @@ public class Ex01SommeInverse : RunBase<uint, double>
         });
 
         return intermediateResults.Sum();
+    }
 
-        double ProcessWithBoundaries(uint minTerme, uint maxTerme)
-        {
-            double sum = 0;
-            for (uint i = minTerme; i <= maxTerme; ++i)
-                sum += 1.0 / i;
+    private double ProcessWithBoundaries(uint minTerme, uint maxTerme)
+    {
+        double sum = 0;
+        for (uint i = minTerme; i <= maxTerme; ++i)
+            sum += 1.0 / i;
 
-            return sum;
-        }
+        return sum;
     }
 
     public override double Process()
