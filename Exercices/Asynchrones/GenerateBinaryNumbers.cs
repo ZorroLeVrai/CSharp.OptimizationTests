@@ -10,7 +10,7 @@ internal class GenerateBinaryBase
         _nbToGenerate = nbToGenerate;
     }
 
-    protected string GetBinary(int number)
+    protected async Task<string> GetBinaryAsync(int number)
     {
         using HttpClient client = new();
 
@@ -19,7 +19,8 @@ internal class GenerateBinaryBase
 
         try
         {
-            return client.GetStringAsync(url).Result;
+            Console.WriteLine("Requete envoyée: {0}", url);
+            return await client.GetStringAsync(url);
         }
         catch (Exception ex)
         {
@@ -34,26 +35,35 @@ internal class GenerateBinaryNumbers : GenerateBinaryBase
     {
     }
 
-    private IEnumerable<string> GenerateBinaries()
+    private async Task<IEnumerable<string>> GenerateBinaries()
     {
-        var results = new string[_nbToGenerate];
+        var tasks = new Task<string>[_nbToGenerate];
 
         for (int i = 0; i < _nbToGenerate; ++i)
         {
             int randomNumber = _random.Next(256);
-            results[i] = GetBinary(randomNumber);
+            tasks[i] = GetBinaryAsync(randomNumber);
         }
 
-        return results;
+        await foreach (var completedTask in Task.WhenEach(tasks))
+        {
+            // Process the result of the completed task
+            var result = await completedTask;
+            Console.WriteLine($"Task completed with result: {result}");
+        }
+
+        return tasks.Select(task => task.Result);
+
+        //return tasks;
     }
 
-    public void Display()
+    public async Task Display()
     {
-        var result = GenerateBinaries().ToArray();
-        foreach (var binary in result)
-        {
-            Console.WriteLine(binary);
-        }
+        var result = await GenerateBinaries();
+        //foreach (var binary in result)
+        //{
+        //    Console.WriteLine(binary);
+        //}
     }
 
     //public async Task DisplayAsync()

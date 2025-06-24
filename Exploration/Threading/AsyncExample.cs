@@ -5,12 +5,12 @@ public class AsyncExample
     public async Task RunAsync()
     {
         Console.WriteLine("Etape 1");
-        var task = ProcessAsync();
+        await ProcessAsync();
         Console.WriteLine("Etape 2");
         //Simule un traitement synchrone qui prend du temps
         Thread.Sleep(4000);
         Console.WriteLine("Etape 3 - Fin du traitement");
-        await task; // Attente de la fin de la tâche asynchrone
+        //await task; // Attente de la fin de la tâche asynchrone
         Console.WriteLine("Fin du programme");
 
 
